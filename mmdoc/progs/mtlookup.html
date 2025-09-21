@@ -1,0 +1,373 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>mtlookup tutorial &#8212; MesoMath 1.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    
+    <link rel="shortcut icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="API" href="../api.html" />
+    <link rel="prev" title="metrotable tutorial" href="metrotable.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../api.html" title="API"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="metrotable.html" title="metrotable tutorial"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MesoMath 1.1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="docutils literal notranslate"><span class="pre">mtlookup</span></code> tutorial</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <link rel="icon" type="image/svg" href="../favicon.svg">
+<section id="mtlookup-tutorial">
+<h1><code class="docutils literal notranslate"><span class="pre">mtlookup</span></code> tutorial<a class="headerlink" href="#mtlookup-tutorial" title="Permalink to this heading">¶</a></h1>
+<p>Jesús Cabrera (<a class="reference external" href="https://jccsvq.github.io/">jccsvq</a>)(*), 2025.</p>
+<blockquote>
+<div><p>(*) At gmail.com</p>
+</div></blockquote>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>Python3 command line application based on <a class="reference external" href="https://github.com/jccsvq/mesomath">MesoMath</a> to search for the abstract number that corresponds to a measure or to list measures that correspond to a given abstract number (option: <code class="docutils literal notranslate"><span class="pre">-r</span></code>).</p>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h2>
+<p>Please refer to the installation of <a class="reference external" href="https://jccsvq.github.io/mesomath/progs/metrotable.html"><code class="docutils literal notranslate"><span class="pre">metrotable</span></code></a> and follow the same steps.</p>
+</section>
+<section id="how-to-use">
+<h2>How to use<a class="headerlink" href="#how-to-use" title="Permalink to this heading">¶</a></h2>
+<section id="options">
+<h3>Options:<a class="headerlink" href="#options" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ mtlookup -h
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ mtlookup --help
+</pre></div>
+</div>
+<p>list the program options:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>usage: mtlookup [-h] [-t {L,Lh,S,V,C,W,SysG,SysS}] [-r] [-f FORCE] [-v] [-p]
+                VALUE
+
+Prints abstract number corresponding to a meassure or lists measures having an
+abstract number.
+
+positional arguments:
+  VALUE                 Value
+
+options:
+  -h, --help            show this help message and exit
+  -t {L,Lh,S,V,C,W,SysG,SysS}, --type {L,Lh,S,V,C,W,SysG,SysS}
+                        Metrology to use (default: None)
+  -r, --reverse         Reverse lookup ,lists measures having an abstract
+                        number (default: False)
+  -f FORCE, --force FORCE
+                        Force base unit to number FORCE (default: -1)
+  -v, --verbose         Prints more information (default: False)
+  -F {0,1}, --fractions {0,1}
+                        Use fractions, -F 1 to include 1/6 (default: -1)
+  -p, --pedantic        Write the coefficients of the units in the
+                        measurements using the S and G Systems (default:
+                        False)
+
+jccsvq fecit, 2025. Public domain.
+</pre></div>
+</div>
+</section>
+<section id="metrologies">
+<h3>Metrologies<a class="headerlink" href="#metrologies" title="Permalink to this heading">¶</a></h3>
+<p>Metrology is selected with the options <code class="docutils literal notranslate"><span class="pre">-t</span></code> or <code class="docutils literal notranslate"><span class="pre">--type</span></code>:</p>
+<ul class="simple">
+<li><p>L:   length meassurements</p></li>
+<li><p>Lh:   length meassurements (Heights)</p></li>
+<li><p>S:   surface meassurements</p></li>
+<li><p>V:   volume meassurements</p></li>
+<li><p>C:   capacity meassurements</p></li>
+<li><p>W:   weight meassurements</p></li>
+<li><p>SysS:   System S to count objects</p></li>
+<li><p>SysG:   System G to count objects</p></li>
+</ul>
+</section>
+<section id="direct-search">
+<h3>Direct search<a class="headerlink" href="#direct-search" title="Permalink to this heading">¶</a></h3>
+<p>Returns the abstract value corresponding to a measurement in a given metrology.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ mtlookup -t L &#39;1 us 30 ninda&#39; 
+</pre></div>
+</div>
+<p>returns:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1 us 30 ninda  -&gt;  1:30
+</pre></div>
+</div>
+<p>You can use the verbose options <code class="docutils literal notranslate"><span class="pre">-v</span></code> or <code class="docutils literal notranslate"><span class="pre">--verbose</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ mtlookup -t L &#39;1 us 30 ninda&#39; --verbose
+
+Abstract number for  Babylonian length meassurement
+    Base unit:  ninda
+========================================================
+1 us 30 ninda  -&gt;  1:30 Reciprocal:  40
+</pre></div>
+</div>
+</section>
+<section id="reverse-search">
+<h3>Reverse search<a class="headerlink" href="#reverse-search" title="Permalink to this heading">¶</a></h3>
+<p>With the <code class="docutils literal notranslate"><span class="pre">-r</span></code> or <code class="docutils literal notranslate"><span class="pre">--reverse</span></code> options you get a list of measures that match the given abstract number:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ mtlookup -t L 1.30 -r 
+
+Looking for  Babylonian length meassurements with abstract =  1.30
+    Base unit:  ninda
+========================================================
+10800 danna  &lt;-  1:30
+180 danna  &lt;-  1:30
+3 danna  &lt;-  1:30
+1 us 30 ninda  &lt;-  1:30
+1 ninda 6 kus  &lt;-  1:30
+9 susi  &lt;-  1:30
+
+$ mtlookup -t L 1.30 -r -v
+
+Looking for  Babylonian length meassurements with abstract =  1.30
+    Base unit:  ninda
+========================================================
+10800 danna 
+    Equiv.:  116640000.0 meters 
+    Abstract:  1:30
+180 danna 
+    Equiv.:  1944000.0 meters 
+    Abstract:  1:30
+3 danna 
+    Equiv.:  32400.0 meters 
+    Abstract:  1:30
+1 us 30 ninda 
+    Equiv.:  540.0 meters 
+    Abstract:  1:30
+1 ninda 6 kus 
+    Equiv.:  9.0 meters 
+    Abstract:  1:30
+9 susi 
+    Equiv.:  0.15 meters 
+    Abstract:  1:30
+</pre></div>
+</div>
+<p>In some cases, due to the discrete nature of the measurements and rounding, the last rows of the list only show approximate values:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ mtlookup -r -t L 6.40.38 
+
+Looking for  Babylonian length meassurements with abstract =  6.40.38
+    Base unit:  ninda
+========================================================
+2884560 danna  &lt;-  6:40:38
+48076 danna  &lt;-  6:40:38
+801 danna 8 us  &lt;-  6:40:38
+13 danna 10 us 38 ninda  &lt;-  6:40:38
+6 us 40 ninda 7 kus 18 susi  &lt;-  6:40:38
+6 ninda 8 kus 3 susi  &lt;-  6:40:30
+1 kus 10 susi  &lt;-  6:40
+</pre></div>
+</div>
+<p>you can use options <code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">--strict</span></code> to suppress them:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ mtlookup -r -t L 6.40.38 -s
+
+Looking for  Babylonian length meassurements with abstract =  6.40.38
+    Base unit:  ninda
+========================================================
+2884560 danna  &lt;-  6:40:38
+48076 danna  &lt;-  6:40:38
+801 danna 8 us  &lt;-  6:40:38
+13 danna 10 us 38 ninda  &lt;-  6:40:38
+6 us 40 ninda 7 kus 18 susi  &lt;-  6:40:38
+</pre></div>
+</div>
+</section>
+<section id="pedantic-mode">
+<h3>Pedantic mode<a class="headerlink" href="#pedantic-mode" title="Permalink to this heading">¶</a></h3>
+<p>Options <code class="docutils literal notranslate"><span class="pre">-p</span></code> <code class="docutils literal notranslate"><span class="pre">--pedantic</span></code> will print the coefficients of the units expressed in the system S  (system G for surfaces and volumes) making the output more closely mimic the way the measurements were actually inscribed on the clay tablets, but it complicates things for the modern reader:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ mtlookup -t V &#39;128 gan 133 se&#39; -p
+(7 bur 2 iku) gan (2 ges 1 u 3 dis) se  -&gt;  3:33:20:0:44:20
+
+$ mtlookup -t V 3:33:20:0:44:20 -pr
+
+Looking for  Babylonian volume meassurements with abstract =  3:33:20:0:44:20
+    Base unit:  gin
+========================================================
+(1536001 sargal 2 saru 8 sar 4 buru) gan  &lt;-  3:33:20:0:44:20
+(25600 sargal 1 sar 2 buru 8 bur 2 ese) gan  &lt;-  3:33:20:0:44:20
+(426 sargal 4 saru 1 bur 1 ese 2 iku) gan (1 ges) sar  &lt;-  3:33:20:0:44:20
+(7 sargal 6 sar 4 buru) gan (4 u 4 dis) sar (2 u) gin  &lt;-  3:33:20:0:44:20
+(7 sar 6 bur 2 ese) gan (4 u 4 dis) gin (1 ges) se  &lt;-  3:33:20:0:44:20
+(7 bur 2 iku) gan (2 ges 1 u 3 dis) se  &lt;-  3:33:20:0:44:20
+(2 iku) gan (1 u 3 dis) sar (2 u) gin (2 dis) se  &lt;-  3:33:20:0:40
+(3 dis) sar (3 u 3 dis) gin (1 ges) se  &lt;-  3:33:20
+</pre></div>
+</div>
+</section>
+<section id="fractions">
+<h3>Fractions<a class="headerlink" href="#fractions" title="Permalink to this heading">¶</a></h3>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">-F0</span></code> option to have the output use the fractions <code class="docutils literal notranslate"><span class="pre">1/3,</span> <span class="pre">1/2,</span> <span class="pre">2/3,</span> <span class="pre">5/6'</span></code>, <code class="docutils literal notranslate"><span class="pre">-F1</span></code> to also include the fraction <code class="docutils literal notranslate"><span class="pre">1/6</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ mtlookup -t L 1.30 -r -F0
+
+Looking for  Babylonian length meassurements with abstract =  1.30
+    Base unit:  ninda
+========================================================
+10800 danna  &lt;-  1:30
+180 danna  &lt;-  1:30
+3 danna  &lt;-  1:30
+1 1/2 us  &lt;-  1:30
+1 1/2 ninda  &lt;-  1:30
+9 susi  &lt;-  1:30
+$
+</pre></div>
+</div>
+<p>You may combine it with <code class="docutils literal notranslate"><span class="pre">-p</span></code> (pedantic mode):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ mtlookup -t L 1.30 -r -pF1
+
+Looking for  Babylonian length meassurements with abstract =  1.30
+    Base unit:  ninda
+========================================================
+(3 sar) danna  &lt;-  1:30
+(3 ges) danna  &lt;-  1:30
+(3 dis) danna  &lt;-  1:30
+(1 dis) 1/2 us  &lt;-  1:30
+(1 dis) 1/2 ninda  &lt;-  1:30
+1/6 kus (4 dis) susi  &lt;-  1:30
+$ 
+</pre></div>
+</div>
+</section>
+<section id="academic-unit-names">
+<h3>Academic unit names<a class="headerlink" href="#academic-unit-names" title="Permalink to this heading">¶</a></h3>
+<p>You can combine the <code class="docutils literal notranslate"><span class="pre">-F</span> <span class="pre">--fractions</span></code> options with <code class="docutils literal notranslate"><span class="pre">-a</span> <span class="pre">--academic</span></code> to obtain listings using the academic names of the units:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ mtlookup -t L &#39;1 us 30 ninda&#39; -aF1
+1 1/2 UŠ  -&gt;  1:30
+
+$ mtlookup -t L 1.30 -r -pF1 -a
+
+Looking for  Babylonian length meassurements with abstract =  1.30
+    Base unit:  ninda
+========================================================
+(3 sar) danna  &lt;-  1:30
+(3 ges) danna  &lt;-  1:30
+(3 dis) danna  &lt;-  1:30
+(1 dis) 1/2 UŠ  &lt;-  1:30
+(1 dis) 1/2 ninda  &lt;-  1:30
+1/6 kuš3 (4 dis) šu-si  &lt;-  1:30
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/mesomath.png" alt="Logo"/>
+            </a></p>
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">mtlookup</span></code> tutorial</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#how-to-use">How to use</a><ul>
+<li><a class="reference internal" href="#options">Options:</a></li>
+<li><a class="reference internal" href="#metrologies">Metrologies</a></li>
+<li><a class="reference internal" href="#direct-search">Direct search</a></li>
+<li><a class="reference internal" href="#reverse-search">Reverse search</a></li>
+<li><a class="reference internal" href="#pedantic-mode">Pedantic mode</a></li>
+<li><a class="reference internal" href="#fractions">Fractions</a></li>
+<li><a class="reference internal" href="#academic-unit-names">Academic unit names</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="metrotable.html"
+                          title="previous chapter"><code class="docutils literal notranslate"><span class="pre">metrotable</span></code> tutorial</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../api.html"
+                          title="next chapter">API</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/progs/mtlookup.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../api.html" title="API"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="metrotable.html" title="metrotable tutorial"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">MesoMath 1.1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="docutils literal notranslate"><span class="pre">mtlookup</span></code> tutorial</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2025, jccsvq.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

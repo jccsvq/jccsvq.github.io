@@ -1,0 +1,335 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>MesoMath v1.1.0 &#8212; MesoMath 1.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    
+    <link rel="shortcut icon" href="_static/favicon.svg"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Release Notes" href="release-notes.html" />
+    <link rel="prev" title="Welcome to MesoMath’s documentation!" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="release-notes.html" title="Release Notes"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to MesoMath’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">MesoMath 1.1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">MesoMath v1.1.0</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p><img alt="mesomath" src="_images/mesomath.png" /></p>
+<section id="mesomath-v1-1-0">
+<h1>MesoMath v1.1.0<a class="headerlink" href="#mesomath-v1-1-0" title="Permalink to this heading">¶</a></h1>
+<section id="intro">
+<h2>Intro<a class="headerlink" href="#intro" title="Permalink to this heading">¶</a></h2>
+<p>This package is intended for the arithmetic of natural sexagesimal numbers, mainly in their “floating” aspect (i.e., by removing all possible trailing sexagesimal zeros from the right), as performed by the Babylonian scribes and their apprentices in ancient times. It also allows to deal with the basic aspects of metrology of the time.</p>
+<p>Inspired by the arithmetic and metrological parts of Baptiste Mélès’ <a class="reference external" href="https://github.com/BapMel/mesocalc">MesoCalc</a>, it aims to bring this type of calculation to Python programming and to the command line as a calculator.</p>
+<p><code class="docutils literal notranslate"><span class="pre">mesomath</span></code> module contains four submodules:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">babn.py</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hamming.py</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mesolib.py</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">npvs</span></code></p></li>
+</ul>
+<p>one utility script:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">createDB.py</span></code></p></li>
+</ul>
+<p>one example script:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">example-melville.py</span></code></p></li>
+</ul>
+<p>four test/demo scripts:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">test-babn.py</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test-hamming.py</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test-mesolib.py</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test-npvs.py</span></code></p></li>
+</ul>
+<p>and two applications in the <code class="docutils literal notranslate"><span class="pre">progs</span></code> subdirectory:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">metrotable.py</span></code> to print segments of metrological tables.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mtlookup.py</span></code> to search for the abstract number that corresponds to a measure or to list measures that correspond to a given abstract number.</p></li>
+</ul>
+</section>
+<section id="tutorials">
+<h2>Tutorials<a class="headerlink" href="#tutorials" title="Permalink to this heading">¶</a></h2>
+<p>A tutorial to the use of this package is included in files <a class="reference internal" href="tutorial.html"><span class="doc std std-doc">tutorial.md</span></a> and <a class="reference external" href="https://jccsvq.github.io/mesomath/tutorial.html">tutorial.html</a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">metrotable</span></code> has its own tutorial in files <a class="reference internal" href="progs/metrotable.html"><span class="doc std std-doc">progs/metrotable.md</span></a> and <a class="reference external" href="https://jccsvq.github.io/mesomath/progs/metrotable.html">metrotable.html</a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">mtlookup</span></code> has its own tutorial in files <a class="reference internal" href="progs/mtlookup.html"><span class="doc std std-doc">progs/mtlookup.md</span></a> and <a class="reference external" href="https://jccsvq.github.io/mesomath/progs/mtlookup.html">mtlookup.html</a>.</p>
+</section>
+<section id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">mesomath</span></code> only uses  standard Python modules: <code class="docutils literal notranslate"><span class="pre">math</span></code>, <code class="docutils literal notranslate"><span class="pre">itertools</span></code>, <code class="docutils literal notranslate"><span class="pre">argparse</span></code>, <code class="docutils literal notranslate"><span class="pre">os.path</span></code>, <code class="docutils literal notranslate"><span class="pre">re</span></code> and <code class="docutils literal notranslate"><span class="pre">sqlite3</span></code>.</p>
+<p>Tested with Python 3.11.2 under Debian GNU/Linux 12 (bookworm) in x86_64 and aarch64 (raspberrypi 5).</p>
+</section>
+<section id="babn-py">
+<h2><code class="docutils literal notranslate"><span class="pre">babn.py</span></code><a class="headerlink" href="#babn-py" title="Permalink to this heading">¶</a></h2>
+<p>This is the main module defining the <code class="docutils literal notranslate"><span class="pre">BabN</span></code> class for representing sexagesimal natural numbers. You can perform mathematical operations on objects of the <code class="docutils literal notranslate"><span class="pre">BabN</span></code> class using the operators +, -, *, **, /, and //, and combine them using parentheses, both in a program and interactively on the Python command line. It also allows you to obtain their reciprocals in the case of regular numbers, their approximate inverses in the general case, approximate square and cube floating roots and obtain divisors and lists of “nearest” regular numbers. See the <code class="docutils literal notranslate"><span class="pre">test-babn.py</span></code> script.</p>
+<section id="note">
+<h3>Note:<a class="headerlink" href="#note" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Operator <code class="docutils literal notranslate"><span class="pre">/</span></code> return the approximate floating division of <code class="docutils literal notranslate"><span class="pre">a/b</span></code> for any pair of numbers.</p></li>
+<li><p>Operator <code class="docutils literal notranslate"><span class="pre">//</span></code> is for the “Babylonian Division” of <code class="docutils literal notranslate"><span class="pre">a</span></code> by <code class="docutils literal notranslate"><span class="pre">b</span></code>, i.e. <code class="docutils literal notranslate"><span class="pre">a//b</span></code> returns <code class="docutils literal notranslate"><span class="pre">a</span></code> times the reciprocal of <code class="docutils literal notranslate"><span class="pre">b</span></code>, which requires <code class="docutils literal notranslate"><span class="pre">b</span></code> to be regular.</p></li>
+</ul>
+</section>
+<section id="use-as-an-interactive-calculator">
+<h3>Use as an interactive calculator<a class="headerlink" href="#use-as-an-interactive-calculator" title="Permalink to this heading">¶</a></h3>
+<p>Consult the <a class="reference external" href="https://jccsvq.github.io/mesomath/tutorial.html">tutorial</a>!</p>
+<p>The easiest way is to invoque the interactive python interpreter and import the class BabN; for instance</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ python3 -i
+Python 3.11.2 (main, Apr 28 2025, 14:11:48) [GCC 12.2.0] on linux
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; from mesomath.babn import BabN as bn
+&gt;&gt;&gt; a = bn(405)
+&gt;&gt;&gt; a
+6:45
+&gt;&gt;&gt;  (etc.)
+</pre></div>
+</div>
+<p>or, with ipython:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ ipython3 
+Python 3.11.2 (main, Apr 28 2025, 14:11:48) [GCC 12.2.0]
+Type &#39;copyright&#39;, &#39;credits&#39; or &#39;license&#39; for more information
+IPython 8.5.0 -- An enhanced Interactive Python. Type &#39;?&#39; for help.
+
+In [1]: from mesomath.babn import BabN as bn
+
+In [2]: a = bn(405)
+
+In [3]: a
+Out[3]: 6:45
+
+In [4]: a.explain()
+|  Sexagesimal number: [6, 45] is the decimal number: 405.
+|    It may be written as 2^0 * 3^4 * 5^1 * 1),
+|    so, it is a regular number with reciprocal: 8:53:20
+
+In [5]:  (etc.)
+</pre></div>
+</div>
+<p>But you can also create an executable script for your operating system that invokes the interpreter; for example, on Linux, create a file named <code class="docutils literal notranslate"><span class="pre">babcal</span></code> containing (customize <code class="docutils literal notranslate"><span class="pre">PYTHONPATH</span></code> below to your needs) :</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#!/usr/bin/env -S PYTHONPATH={path to directory containing mesomath module}  python3 -i -c &#39;from mesomath.babn import BabN as bn; print(&quot;\nWelcome to Babylonian Calculator\n    ...the calculator that every scribe should have!\nUse: bn(number)\n&quot;)&#39;
+</pre></div>
+</div>
+<p>then, after making it executable and instaling it somewhere on the PATH:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ babcalc
+
+Welcome to Babylonian Calculator
+...the calculator that every scribe should have!
+Use: bn(number)
+
+&gt;&gt;&gt; a = bn(405)
+&gt;&gt;&gt; a
+6:45
+&gt;&gt;&gt;  (etc.)
+</pre></div>
+</div>
+</section>
+</section>
+<section id="hamming-py">
+<h2><code class="docutils literal notranslate"><span class="pre">hamming.py</span></code><a class="headerlink" href="#hamming-py" title="Permalink to this heading">¶</a></h2>
+<p>Regular or Hamming numbers are numbers of the form:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>H = 2^i * 3^j × 5^k
+
+where  i, j, k ≥ 0 
+</pre></div>
+</div>
+<p>This module is used to obtain lists of such numbers and ultimately build a SQLite3 database of them up to 20 sexagesimal digits. This database is used by BabN to search for regular numbers close to a given one. See the scripts: <code class="docutils literal notranslate"><span class="pre">createDB.py</span></code> and <code class="docutils literal notranslate"><span class="pre">test-hamming.py</span></code>.</p>
+</section>
+<section id="mesolib-py">
+<h2><code class="docutils literal notranslate"><span class="pre">mesolib.py</span></code><a class="headerlink" href="#mesolib-py" title="Permalink to this heading">¶</a></h2>
+<p>This is a rather obsolete module, as its functionality has been moved to the methods of the <code class="docutils literal notranslate"><span class="pre">BabN</span></code> class. It can be safely ignored and will likely be removed in the future. In any case, please refer to the <code class="docutils literal notranslate"><span class="pre">test-mesolib.py</span></code> script.</p>
+</section>
+<section id="npvs-py">
+<h2><code class="docutils literal notranslate"><span class="pre">npvs.py</span></code><a class="headerlink" href="#npvs-py" title="Permalink to this heading">¶</a></h2>
+<p>This module defines the generic class <code class="docutils literal notranslate"><span class="pre">Npvs</span></code> for handling measurements in various units within a system. It is built using length measurements in the imperial system of units, from inches to leagues, as an example. This class is inherited by the <code class="docutils literal notranslate"><span class="pre">_MesoM</span></code> class which adapts it to Mesopotamian metrological use. The <code class="docutils literal notranslate"><span class="pre">_MesoM</span></code> class, in turn, is inherited by:</p>
+<ul class="simple">
+<li><p>class <code class="docutils literal notranslate"><span class="pre">BsyG</span></code>: Babylonian counting System G (iku ese bur bur_u sar sar_u sar_gal)</p></li>
+<li><p>class <code class="docutils literal notranslate"><span class="pre">BsyS</span></code>: Babylonian counting  System S (dis u ges gesu sar sar_u sar_gal)</p></li>
+<li><p>class <code class="docutils literal notranslate"><span class="pre">MesoM</span></code>: To represent physical quantities, inherited by:</p>
+<ul>
+<li><p>class <code class="docutils literal notranslate"><span class="pre">Blen</span></code>: Babylonian length system (susi kus ninda us danna)</p></li>
+<li><p>class <code class="docutils literal notranslate"><span class="pre">Bsur</span></code>: Babylonian surface system (se gin sar gan)</p></li>
+<li><p>class <code class="docutils literal notranslate"><span class="pre">Bvol</span></code>: Babylonian volume system  (se gin sar gan)</p></li>
+<li><p>class <code class="docutils literal notranslate"><span class="pre">Bcap</span></code>: Babylonian capacity system  (se gin sila ban bariga gur)</p></li>
+<li><p>class <code class="docutils literal notranslate"><span class="pre">Bwei</span></code>: Babylonian weight system (se gin mana gu)</p></li>
+<li><p>class <code class="docutils literal notranslate"><span class="pre">Bbri</span></code>: Babylonian brick counting system (se gin sar gan)</p></li>
+</ul>
+</li>
+</ul>
+<p>Please, read the <a class="reference external" href="https://jccsvq.github.io/mesomath/tutorial.html">tutorial</a> to see how to use all these classes.</p>
+</section>
+<section id="createdb-py">
+<h2><code class="docutils literal notranslate"><span class="pre">createDB.py</span></code><a class="headerlink" href="#createdb-py" title="Permalink to this heading">¶</a></h2>
+<p>This script has become more or less obsolete since its functionality was incorporated into the BabN class, which now creates the regular number database if it cannot find it when needed.</p>
+<p>Use:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ python3 createDB.py
+</pre></div>
+</div>
+<p>to create the default regular number database <code class="docutils literal notranslate"><span class="pre">regular.db3</span></code> in your directory.  You can also use:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ python3 createDB.py -o &#39;path/name&#39;
+</pre></div>
+</div>
+<p>to create it in a non-standar location. In this case, think of using:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>BabN.database = &#39;path/name&#39;
+</pre></div>
+</div>
+<p>to inform <code class="docutils literal notranslate"><span class="pre">BabN</span></code>  of its location.</p>
+</section>
+<section id="example-melville-py">
+<h2><code class="docutils literal notranslate"><span class="pre">example-melville.py</span></code><a class="headerlink" href="#example-melville-py" title="Permalink to this heading">¶</a></h2>
+<p>This script shows the application of <code class="docutils literal notranslate"><span class="pre">mesomath</span></code> to the solution of two real examples given by Duncan J. Melville in: <a class="reference external" href="https://www.researchgate.net/publication/237309438_RECIPROCALS_AND_RECIPROCAL_ALGORITHMS_IN_MESOPOTAMIAN_MATHEMATICS">Reciprocals and Reciprocal algorithms in Mesopotamian Mathematics (2005)</a></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ python3 example-melville.py 
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Searching the reciprocal of 2:5  according to D. J. Melville (2005)
+
+Example 1: from Table 2. Simple Reciprocal algorithm
+
+d1 = BabN(&#39;2:5&#39;)
+r1 = d1.tail()
+r2 = r1.rec()
+r3 = d1 * r2
+r4 = r3.rec()
+r5 = r4 * r2
+
+Result r5 =  28:48
+
+Example 2: from Table 3. using &quot;The Technique&quot;
+
+r1 = d1.tail()
+r2 = r1.rec()
+r3 = d1.head() * r2
+r4 = r3+BabN(1)
+r5 = r4.rec()
+r6 = r5 * r2
+
+Result r6 =  28:48
+</pre></div>
+</div>
+<hr>
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/mesomath.png" alt="Logo"/>
+            </a></p>
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">MesoMath v1.1.0</a><ul>
+<li><a class="reference internal" href="#intro">Intro</a></li>
+<li><a class="reference internal" href="#tutorials">Tutorials</a></li>
+<li><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li><a class="reference internal" href="#babn-py"><code class="docutils literal notranslate"><span class="pre">babn.py</span></code></a><ul>
+<li><a class="reference internal" href="#note">Note:</a></li>
+<li><a class="reference internal" href="#use-as-an-interactive-calculator">Use as an interactive calculator</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#hamming-py"><code class="docutils literal notranslate"><span class="pre">hamming.py</span></code></a></li>
+<li><a class="reference internal" href="#mesolib-py"><code class="docutils literal notranslate"><span class="pre">mesolib.py</span></code></a></li>
+<li><a class="reference internal" href="#npvs-py"><code class="docutils literal notranslate"><span class="pre">npvs.py</span></code></a></li>
+<li><a class="reference internal" href="#createdb-py"><code class="docutils literal notranslate"><span class="pre">createDB.py</span></code></a></li>
+<li><a class="reference internal" href="#example-melville-py"><code class="docutils literal notranslate"><span class="pre">example-melville.py</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="index.html"
+                          title="previous chapter">Welcome to MesoMath’s documentation!</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="release-notes.html"
+                          title="next chapter">Release Notes</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/README.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="release-notes.html" title="Release Notes"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to MesoMath’s documentation!"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">MesoMath 1.1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">MesoMath v1.1.0</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2025, jccsvq.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

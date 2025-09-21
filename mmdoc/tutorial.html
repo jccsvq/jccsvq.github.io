@@ -1,0 +1,1543 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>MesoMath v1.1.0 Tutorial &#8212; MesoMath 1.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    
+    <link rel="shortcut icon" href="_static/favicon.svg"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="metrotable tutorial" href="progs/metrotable.html" />
+    <link rel="prev" title="Release Notes" href="release-notes.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="progs/metrotable.html" title="metrotable tutorial"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="release-notes.html" title="Release Notes"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">MesoMath 1.1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">MesoMath <code class="docutils literal notranslate"><span class="pre">v1.1.0</span></code> Tutorial</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <link rel="icon" type="image/svg" href="favicon.svg">
+<section id="mesomath-v1-1-0-tutorial">
+<h1>MesoMath <code class="docutils literal notranslate"><span class="pre">v1.1.0</span></code> Tutorial<a class="headerlink" href="#mesomath-v1-1-0-tutorial" title="Permalink to this heading">¶</a></h1>
+<p><img alt="mesomath" src="_images/mesomath.png" /></p>
+<p>Jesús Cabrera (<a class="reference external" href="https://jccsvq.github.io/">jccsvq</a>)(*), 2025.</p>
+<blockquote>
+<div><p>(*) At gmail.com</p>
+</div></blockquote>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>MesoMath is a <code class="docutils literal notranslate"><span class="pre">Python3</span></code> package intended for the arithmetic of natural sexagesimal numbers, mainly in their “<strong>floating</strong>” aspect (i.e. eliminating all possible trailing sexagesimal zeros on the right, thus abstracting from the order of magnitude of the quantity expressed), as performed by the Babylonian scribes and their apprentices in ancient times. It also allows to deal with the basic aspects of metrology of the time.</p>
+<p>Inpired by the arithmetic and metrological parts of Baptiste Mélès’ <a class="reference external" href="https://github.com/BapMel/mesocalc">MesoCalc</a>, it aims to bring this type of calculation to <code class="docutils literal notranslate"><span class="pre">Python</span></code> programming and to the command line as an efficient and versalite calculator.</p>
+<section id="getting-it">
+<h3>Getting it<a class="headerlink" href="#getting-it" title="Permalink to this heading">¶</a></h3>
+<p>You can obtain the software from its <a class="reference external" href="https://github.com/jccsvq/mesomath">GitHub repository</a>.  Click on the <code class="docutils literal notranslate"><span class="pre">&lt;&gt;Code</span></code> button and choose  <code class="docutils literal notranslate"><span class="pre">Download</span> <span class="pre">ZIP</span></code>.  Unzip the downloaded archive to any directory of your choice (hereinafter referred to as the <em>installation directory</em>) and   <code class="docutils literal notranslate"><span class="pre">cd</span></code> to it, that’s all.</p>
+</section>
+<section id="requirements">
+<h3>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading">¶</a></h3>
+<p>Obviously, a more or less modern version of <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">3</span></code> must be installed on your system; other than that, nothing else, since MesoMath only uses Python standard modules: <code class="docutils literal notranslate"><span class="pre">math</span></code>, <code class="docutils literal notranslate"><span class="pre">itertools</span></code>, <code class="docutils literal notranslate"><span class="pre">argparse</span></code>, <code class="docutils literal notranslate"><span class="pre">os.path</span></code>, <code class="docutils literal notranslate"><span class="pre">re</span></code> and <code class="docutils literal notranslate"><span class="pre">sqlite3</span></code>.</p>
+</section>
+<section id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h3>
+<p>None is required for casual use, simply work from the installation directory. So, if you decide to do without the application, you just have to delete that directory to get rid of all this stuff. To test the installation, open a terminal on the installation directory and run:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ python3 test-babn.py
+</pre></div>
+</div>
+<p>If all goes well and you don’t encounter any error messages, you should get output similar to that shown in Appendix A (That output can be useful later as a cheat sheet for the calculator.).</p>
+</section>
+</section>
+<section id="running-mesomath-as-a-mesopotamian-babylonian-calculator">
+<h2>Running MesoMath as a Mesopotamian/Babylonian calculator<a class="headerlink" href="#running-mesomath-as-a-mesopotamian-babylonian-calculator" title="Permalink to this heading">¶</a></h2>
+<section id="the-simplest">
+<h3>The simplest<a class="headerlink" href="#the-simplest" title="Permalink to this heading">¶</a></h3>
+<p>Now that everything is hopefully up and working, is time to launch MesoMath as a calculator. To do this, we will open an interactive Python or iPython session (if you have it installed):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ python3
+Python 3.11.2 (main, Apr 28 2025, 14:11:48) [GCC 12.2.0] on linux
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+<p>At the python prompt <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code> we will enter:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; from mesomath.babn import BabN as bn
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+<p>Python silently returns the prompt, a sign that everything went well. What we’ve done is tell the interpreter to load the <code class="docutils literal notranslate"><span class="pre">BabN</span></code> class contained in the <code class="docutils literal notranslate"><span class="pre">babn</span></code> submodule of <code class="docutils literal notranslate"><span class="pre">mesomath</span></code> under the name <code class="docutils literal notranslate"><span class="pre">bn</span></code> (a faster abbreviation for <code class="docutils literal notranslate"><span class="pre">BabN</span></code>). We are about to introduce “Babylonian numbers” as objects of the <code class="docutils literal notranslate"><span class="pre">bn</span></code> class.</p>
+<p>For iPython:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ ipython3 
+Python 3.11.2 (main, Apr 28 2025, 14:11:48) [GCC 12.2.0]
+Type &#39;copyright&#39;, &#39;credits&#39; or &#39;license&#39; for more information
+IPython 8.5.0 -- An enhanced Interactive Python. Type &#39;?&#39; for help.
+
+In [1]:
+</pre></div>
+</div>
+<p>let us enter:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>In [1]: from mesomath.babn import BabN as bn
+
+In [2]:
+</pre></div>
+</div>
+</section>
+<section id="to-work-in-directories-other-than-the-installation-directory">
+<h3>To work in directories other than the installation directory<a class="headerlink" href="#to-work-in-directories-other-than-the-installation-directory" title="Permalink to this heading">¶</a></h3>
+<p>The above is sufficient to work from the installation directory. To work from other directories, we must ensure that Python finds the <code class="docutils literal notranslate"><span class="pre">mesomath</span></code> module. This issue can be somewhat complicated, but one solution is the following:</p>
+<p>Create a text file called something like <code class="docutils literal notranslate"><span class="pre">initmm.py</span></code> that contains at least the first three lines of the following:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import sys
+sys.path.append(&quot;/home/jesus/Nextcloud/MesoMath&quot;)
+from mesomath.babn import BabN as bn
+
+message=&#39;&#39;&#39;\nWelcome to Babylonian Calculator
+    ...the calculator that every scribe should have!
+\nUse: bn(number) to enter &quot;Babylonian numbers&quot;\n&#39;&#39;&#39;
+
+print(message)
+</pre></div>
+</div>
+<blockquote>
+<div><p>Of course, you must change: /home/jesus/Nextcloud/MesoMath/ to the path corresponding to your installation!</p>
+</div></blockquote>
+<p>Copy the file to the directory you will be working in and launch:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ python3  -i initmm.py 
+
+Welcome to Babylonian Calculator
+    ...the calculator that every scribe should have!
+
+Use: bn(number) to enter &quot;Babylonian numbers&quot;
+
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ ipython3  -i --no-banner initmm.py 
+
+Welcome to Babylonian Calculator
+    ...the calculator that every scribe should have!
+
+Use: bn(number) to enter &quot;Babylonian numbers&quot;
+
+
+In [1]: 
+</pre></div>
+</div>
+<p>The above is sufficient if you are going to limit yourself to sexagesimal calculations, but if you are also going to tinker with the metrological aspects of scribal mathematics you should use an <code class="docutils literal notranslate"><span class="pre">initmm.py</span></code> file like:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import sys
+sys.path.append(&quot;/home/jesus/Nextcloud/MesoMath&quot;)
+from mesomath.babn import BabN as bn
+from mesomath.npvs import Blen as bl
+from mesomath.npvs import Bsur as bs
+from mesomath.npvs import Bvol as bv
+from mesomath.npvs import Bcap as bc
+from mesomath.npvs import Bwei as bw
+from mesomath.npvs import BsyG as bG
+from mesomath.npvs import BsyS as bS
+from mesomath.npvs import Bbri as bb
+
+message=&#39;&#39;&#39;Welcome to Babylonian Calculator
+    ...the calculator that every scribe should have!
+
+Use: bn(number), metrological classes: bl, bs, bv, bc, bw bG and bS loaded.&#39;&#39;&#39;
+
+print(message)
+</pre></div>
+</div>
+</section>
+<section id="create-scripts">
+<h3>Create scripts<a class="headerlink" href="#create-scripts" title="Permalink to this heading">¶</a></h3>
+<p>For a more permanent installation, you could create scripts for your operating system. For example, on Linux, a file called <code class="docutils literal notranslate"><span class="pre">babcalc</span></code> with the following contents:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#!/usr/bin/env -S PYTHONPATH=/home/jesus/Nextcloud/MesoMath/  python3 -i -c &#39;from mesomath.babn import BabN as bn; print(&quot;\nWelcome to Babylonian Calculator\n    ...the calculator that every scribe should have!\nUse: bn(number)\n&quot;)&#39;
+</pre></div>
+</div>
+<blockquote>
+<div><p>Of course, you must change: /home/jesus/Nextcloud/MesoMath/ to the path corresponding to your installation!</p>
+<p>You can use ipython3 instead.</p>
+</div></blockquote>
+<p>This file, once made executable and moved to any folder in the PATH, is very convenient. From any directory:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ babcalc 
+
+Welcome to Babylonian Calculator
+    ...the calculator that every scribe should have!
+Use: bn(number)
+
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+<p>In fact, during the development of this package an executable script like the following is being used:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#!/usr/bin/env -S python3  -i 
+
+import sys
+sys.path.append(&quot;/home/jesus/Nextcloud/MesoMath&quot;)
+from mesomath.babn import BabN as bn
+from mesomath.npvs import Blen as bl
+from mesomath.npvs import Bsur as bs
+from mesomath.npvs import Bvol as bv
+from mesomath.npvs import Bcap as bc
+from mesomath.npvs import Bwei as bw
+from mesomath.npvs import BsyG as bG
+from mesomath.npvs import BsyS as bS
+from mesomath.npvs import Bbri as bb
+
+
+message=&#39;&#39;&#39;\nWelcome to Babylonian Calculator
+    ...the calculator that every scribe should have!
+
+Use: bn(number) for sexagesimal calculations
+Metrological classes: bl, bs, bv, bc, bw, bG, bS and bb loaded.&#39;&#39;&#39;
+
+print(message)
+</pre></div>
+</div>
+</section>
+</section>
+<section id="hands-on">
+<h2>Hands on<a class="headerlink" href="#hands-on" title="Permalink to this heading">¶</a></h2>
+<p>In what follows, the reader is assumed to be familiar with the key topics of Mesopotamian mathematics, in particular with the concepts of <strong>decimal</strong> and <strong>sexagesimal</strong> notations, <strong>absolute</strong> and <strong>floating</strong> numbers and with the concepts of <strong>regular</strong> and <strong>reciprocal</strong> numbers.</p>
+<section id="first-steps">
+<h3>First steps<a class="headerlink" href="#first-steps" title="Permalink to this heading">¶</a></h3>
+<section id="introducing-or-creating-babylonian-numbers">
+<h4>Introducing or creating Babylonian numbers<a class="headerlink" href="#introducing-or-creating-babylonian-numbers" title="Permalink to this heading">¶</a></h4>
+<p>Let us create our first Babylonian number</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; a = bn(405)
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">bn(405)</span></code> creates it and it is asigned to variable <code class="docutils literal notranslate"><span class="pre">a</span></code>. Let us explore some of its properties:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; a.dec
+405
+&gt;&gt;&gt; a.list
+[6, 45]
+&gt;&gt;&gt; a.factors
+(0, 4, 1, 1)
+&gt;&gt;&gt; a
+6:45
+&gt;&gt;&gt; a.isreg
+True
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">a.dec</span></code> This is the decimal expansion of the number, we have used it for its creation above</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">a.list</span></code>This is the list of sexagesimal digits of the number</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">a.factors</span></code> This is the list of factors/divisors of the number (see bellow)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">a</span></code> or <code class="docutils literal notranslate"><span class="pre">print(a)</span></code> give us the printable representation of the number <code class="docutils literal notranslate"><span class="pre">6:45</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">a.isreg</span></code> This tells us that it is a “regular” number</p></li>
+</ul>
+<p>We can obtain all this information together using:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; a.explain()
+|  Sexagesimal number: [6, 45] is the decimal number: 405.
+|    It may be written as 2^0 * 3^4 * 5^1 * 1),
+|    so, it is a regular number with reciprocal: 8:53:20
+&gt;&gt;&gt;
+</pre></div>
+</div>
+<p>while for a non-regular number:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; b=bn(7)
+&gt;&gt;&gt; b.isreg
+False
+&gt;&gt;&gt; b.explain()
+|  Sexagesimal number: [7] is the decimal number:   7.
+|    It may be written as 2^0 * 3^0 * 5^0 * 7),
+|    so, it is NOT a regular number and has NO  reciprocal.
+|    but an approximate inverse is: 8:34:17:9
+|    and a close regular is: 6:59:54:14:24
+|    whose reciprocal is: 8:34:24:11:51:6:40
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+<blockquote>
+<div><p>Any natural number n can be writen as <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">2^i</span> <span class="pre">×</span> <span class="pre">3^j</span> <span class="pre">×</span> <span class="pre">5^k</span> <span class="pre">×</span> <span class="pre">l</span></code> where  <code class="docutils literal notranslate"><span class="pre">i,</span> <span class="pre">j,</span> <span class="pre">k,</span> <span class="pre">l</span>&#160; <span class="pre">≥</span> <span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">i,</span> <span class="pre">j,</span> <span class="pre">k</span></code> are the powers of <code class="docutils literal notranslate"><span class="pre">2,</span> <span class="pre">3</span></code> and <code class="docutils literal notranslate"><span class="pre">5</span></code>, and <code class="docutils literal notranslate"><span class="pre">l</span></code> is a “remainder” that should not be divisible by <code class="docutils literal notranslate"><span class="pre">2,</span> <span class="pre">3</span></code> and <code class="docutils literal notranslate"><span class="pre">5</span></code>. The tuple  <code class="docutils literal notranslate"><span class="pre">(i,j,k,l)</span></code> is what <code class="docutils literal notranslate"><span class="pre">a.factors</span></code> returned above.</p>
+</div></blockquote>
+<p>We can introduce bab numbers in  four ways:</p>
+<ul class="simple">
+<li><p>using the decimal equivalent: <code class="docutils literal notranslate"><span class="pre">a=bn(405)</span></code></p></li>
+<li><p>using the list of  sexagesimal digits: <code class="docutils literal notranslate"><span class="pre">a=bn([6,45])</span></code></p></li>
+<li><p>using its string or literal expression: <code class="docutils literal notranslate"><span class="pre">a=bn('6:45')</span></code> or <code class="docutils literal notranslate"><span class="pre">a=bn(&quot;6.45&quot;)</span></code></p></li>
+<li><p>using its factors as a tuple, as  405 = 2^0 * 3^4 * 5^1 * 1,  <code class="docutils literal notranslate"><span class="pre">a=bn((0,4,1,1))</span></code></p></li>
+</ul>
+<p>so we have:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; b = bn([6,45])
+&gt;&gt;&gt; c = bn(&#39;6:45&#39;)
+&gt;&gt;&gt; d = bn((0,4,1,1))
+&gt;&gt;&gt; a == b == c == d
+True
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+<p>The printable or string representation of numbers uses colon `:``as separator  by default.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; n1=bn(314159265)
+&gt;&gt;&gt; n1
+24:14:26:27:45
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+<p>You can change this default to your liking:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; bn.sep = &#39;.&#39;
+&gt;&gt;&gt; n1
+24.14.26.27.45
+&gt;&gt;&gt; bn.sep = &#39;-&#39;
+&gt;&gt;&gt; n1
+24-14-26-27-45
+&gt;&gt;&gt; bn.sep = &#39;&lt;&gt;&#39;
+&gt;&gt;&gt; n1
+24&lt;&gt;14&lt;&gt;26&lt;&gt;27&lt;&gt;45
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+<p>but you can only use  <code class="docutils literal notranslate"><span class="pre">:</span></code> and <code class="docutils literal notranslate"><span class="pre">.</span></code> for input:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; m = bn(&#39;3:14:16&#39;)
+&gt;&gt;&gt; m1 = bn(&#39;3.14.16&#39;)
+&gt;&gt;&gt; print(m,m1)
+3:14:16 3:14:16
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+</section>
+</section>
+<section id="basic-arithmetic">
+<h3>Basic arithmetic<a class="headerlink" href="#basic-arithmetic" title="Permalink to this heading">¶</a></h3>
+<section id="addition">
+<h4>Addition<a class="headerlink" href="#addition" title="Permalink to this heading">¶</a></h4>
+<p>We use the addition operator <code class="docutils literal notranslate"><span class="pre">+</span></code> to perform addition:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; a = bn(&#39;16.24.35&#39;)
+&gt;&gt;&gt; b = bn(&#39;1.33.54.22&#39;)
+&gt;&gt;&gt; a+b
+1:50:18:57
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+<p>addition is always absolute:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; a = bn(&#39;15.42.37.0.0&#39;)
+&gt;&gt;&gt; b = bn(&#39;24.34.0.0.0&#39;)
+&gt;&gt;&gt; c = a + b
+&gt;&gt;&gt; c
+40:16:37:0:0
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+<p>At any time, if we want the floating version of a number, we will use the .float() method or its synonym .f()</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; c.float()
+40:16:37
+&gt;&gt;&gt; c.f()
+40:16:37
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+<p>no need to use variables:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; bn(45689) + bn(325874)
+1:43:12:43
+</pre></div>
+</div>
+<p>and finally, integers can be added directly:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; bn(&#39;33.14.22&#39;) + 34
+33:14:56
+&gt;&gt;&gt; 5523 + bn(&#39;33.14.22&#39;)
+34:46:25
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+<p>Of course, we are not limited to two addends:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; a + b + bn(&#39;33.14.22&#39;) + 34
+40:17:10:14:56
+&gt;&gt;&gt;
+</pre></div>
+</div>
+</section>
+<section id="subtraction">
+<h4>Subtraction<a class="headerlink" href="#subtraction" title="Permalink to this heading">¶</a></h4>
+<p>Subtraction, like addition, always gives absolute (not floating) results. It also returns the absolute difference of numbers. This is by design, because Mesopotamian mathematics lacked negative numbers and to save us from mistakes. Thus, subtraction in this application is a commutative operation.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; bn(45689) - bn(325874)
+1:17:49:45
+&gt;&gt;&gt; bn(325874) - bn(45689)
+1:17:49:45
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+</section>
+<section id="multiplication">
+<h4>Multiplication<a class="headerlink" href="#multiplication" title="Permalink to this heading">¶</a></h4>
+<p>Multiplication is absolute by default:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; a = bn(&#39;34:59:31:12&#39;)
+&gt;&gt;&gt; b = bn(&#39;14:3:45&#39;)
+&gt;&gt;&gt; a*b
+8:12:4:30:0:0:0
+</pre></div>
+</div>
+<p>if we want a floating result:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; (a*b).f()
+8:12:4:30
+</pre></div>
+</div>
+<p>or we can change the default</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; bn.floatmult = True
+&gt;&gt;&gt; a*b
+8:12:4:30
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+<p>and restore it again:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; bn.floatmult = False
+&gt;&gt;&gt; a*b
+8:12:4:30:0:0:0
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+</section>
+<section id="powers">
+<h4>Powers<a class="headerlink" href="#powers" title="Permalink to this heading">¶</a></h4>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">**</span></code> operator:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; a
+34:59:31:12
+&gt;&gt;&gt; a**2
+20:24:26:24:13:49:26:24
+&gt;&gt;&gt; a**3
+11:54:5:36:24:11:24:33:52:7:40:48
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+</section>
+<section id="division">
+<h4>Division<a class="headerlink" href="#division" title="Permalink to this heading">¶</a></h4>
+<p>This application offers two types of division, both are floating:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">a/b</span></code></strong> Approximate floating division of two arbitrary numbers. This is the translation of our modern division into the world of Babylonian floating numbers, although we have no evidence that they knew it.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">a//b</span></code></strong> This is the “Babylonian Division”, that is, the product of <code class="docutils literal notranslate"><span class="pre">a</span></code> by the reciprocal of <code class="docutils literal notranslate"><span class="pre">b</span></code>, which implies that <code class="docutils literal notranslate"><span class="pre">b</span></code> has to be regular.</p></li>
+</ul>
+<p>Let us try:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; a = bn(&#39;14.15.16&#39;)
+&gt;&gt;&gt; b = bn(&#39;12.2&#39;)
+&gt;&gt;&gt; q = a/b
+&gt;&gt;&gt; q
+1:11:4:29:15:7:29
+</pre></div>
+</div>
+<p>now, as a check:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; b*q
+14:15:16:0:0:0:2:58
+&gt;&gt;&gt;
+</pre></div>
+</div>
+<p>a value that, in the world of floating numbers, is very similar to <code class="docutils literal notranslate"><span class="pre">a</span></code>.</p>
+<p>We can change the number of digits in the result (approximately, sorry):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; bn.rdigits = 10
+&gt;&gt;&gt; a/b
+1:11:4:29:15:7:28:45:12:29:52
+&gt;&gt;&gt; 
+
+
+
+&gt;&gt;&gt; a//b
+Divisor is not a regular number!
+&gt;&gt;&gt; b = bn(405)
+&gt;&gt;&gt; b
+6:45
+&gt;&gt;&gt; b.isreg
+True              # b is regular
+&gt;&gt;&gt; c = b.rec()   # c is the reciprocal of b
+&gt;&gt;&gt; a//b
+2:6:42:22:13:20
+&gt;&gt;&gt; a * c
+2:6:42:22:13:20
+&gt;&gt;&gt; c
+8:53:20
+&gt;&gt;&gt;
+</pre></div>
+</div>
+</section>
+</section>
+<section id="roots">
+<h3>Roots<a class="headerlink" href="#roots" title="Permalink to this heading">¶</a></h3>
+<section id="square-root">
+<h4>Square root<a class="headerlink" href="#square-root" title="Permalink to this heading">¶</a></h4>
+<p>Method .sqrt() returns the floating square root of the numbers.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; bn.rdigits = 6
+&gt;&gt;&gt; bn(2).sqrt()
+1:24:51:10:7:46
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+<p>Let us check it:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; bn(2).sqrt() ** 2
+1:59:59:59:59:59:42:48:20:19:16
+&gt;&gt;&gt;
+</pre></div>
+</div>
+<p>Let us round it to 6 digits:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; (bn(2).sqrt() ** 2).round(6)
+2:0:0:0:0:0
+&gt;&gt;&gt;
+</pre></div>
+</div>
+<p>and floating it:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; (bn(2).sqrt() ** 2).round(6).f()
+2
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+<p>We see that effectively 1:24:51:10:7:46 is an approximation of the square root of 2. To relate this sexagesimal floating value to the square root of two in the decimal system, let’s calculate:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; (bn(2).sqrt()).dec/60.**5
+1.4142135622427983
+&gt;&gt;&gt;
+</pre></div>
+</div>
+<p>which is similar to:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; from math import sqrt
+&gt;&gt;&gt; sqrt(2)
+1.4142135623730951
+&gt;&gt;&gt;
+</pre></div>
+</div>
+<p>Compare the following result:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; (30*bn(2).sqrt()).float()
+42:25:35
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+<p>to the one appearing in tablet <a class="reference external" href="https://en.wikipedia.org/wiki/YBC_7289">YBC 7289</a></p>
+<p><a target = "_blank" title="Urcia, A., Yale Peabody Museum of Natural History,  http://peabody.yale.edu, http://hdl.handle.net/10079/8931zqj
+derivative work, user:Theodor Langhorne Franklin, CC0, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:YBC-7289-OBV-labeled.jpg"><img width="256" alt="Labeled photograph of YBC 7289 identifying inscribed numbers" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/YBC-7289-OBV-labeled.jpg/256px-YBC-7289-OBV-labeled.jpg?20190204183004"></a></p>
+</section>
+<section id="cube-root">
+<h4>Cube root<a class="headerlink" href="#cube-root" title="Permalink to this heading">¶</a></h4>
+<p>Method .cbrt() returns the floating cube root of the numbers.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; bn(2).cbrt()
+1:15:35:43
+&gt;&gt;&gt; bn(2).cbrt() ** 3
+2:0:0:0:15:12:26:47:50:7
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+<p>etc.</p>
+</section>
+</section>
+<section id="complex-expressions">
+<h3>Complex expressions<a class="headerlink" href="#complex-expressions" title="Permalink to this heading">¶</a></h3>
+<p>The Python engine is behind the scenes, which means we can combine elementary operations to build complex expressions:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; a = bn(&#39;16.22&#39;)
+&gt;&gt;&gt; b = bn(&#39;44.16&#39;)
+&gt;&gt;&gt; c = bn(&#39;6.45&#39;)
+&gt;&gt;&gt; d = ((a+b)*(a-b))//c**2
+&gt;&gt;&gt; d
+37:7:42:48:53:20
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+<p>use lists:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; ll=[a,b,c,d]
+&gt;&gt;&gt; ll
+[16:22, 44:16, 6:45, 37:7:42:48:53:20]
+&gt;&gt;&gt; min(ll)
+6:45
+&gt;&gt;&gt; max(ll)
+37:7:42:48:53:20
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+<p>etc.</p>
+</section>
+<section id="logical-operators">
+<h3>Logical operators<a class="headerlink" href="#logical-operators" title="Permalink to this heading">¶</a></h3>
+<p>Logical operators are available and can be combined with integers. This can be useful in programming.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; a &lt;= b and c.isreg
+True
+&gt;&gt;&gt; a &lt; 300
+False
+</pre></div>
+</div>
+</section>
+<section id="other-babn-class-attribute">
+<h3>Other BabN class  attribute<a class="headerlink" href="#other-babn-class-attribute" title="Permalink to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">bn.fill</span></code> is set to <code class="docutils literal notranslate"><span class="pre">False</span></code> by default. You can change it to modify the aspect of the printed sexagesimal numbers by adding a left 0 to digits from 0 to 9 i.e. to conver them to 00, 01, …, 09:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; z = bn(&#39;1.2.0.14.5.4.3&#39;)
+&gt;&gt;&gt; z
+1:2:0:14:5:4:3
+&gt;&gt;&gt; bn.fill = True
+&gt;&gt;&gt; z
+01:02:00:14:05:04:03
+&gt;&gt;&gt; bn.fill = False
+&gt;&gt;&gt; z
+1:2:0:14:5:4:3
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+</section>
+<section id="other-babn-class-methods">
+<h3>Other BabN class methods<a class="headerlink" href="#other-babn-class-methods" title="Permalink to this heading">¶</a></h3>
+<p>Still to be documented. In the meantime, you can consult Appendix B for help on the <code class="docutils literal notranslate"><span class="pre">BabB</span></code> class (called <strong><code class="docutils literal notranslate"><span class="pre">bn</span></code></strong> in this tutorial because we used: <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">mesomath.babn</span> <span class="pre">import</span> <span class="pre">BabN</span> <span class="pre">as</span></code> <strong><code class="docutils literal notranslate"><span class="pre">bn</span></code></strong>).</p>
+<section id="rec">
+<h4>.rec()<a class="headerlink" href="#rec" title="Permalink to this heading">¶</a></h4>
+<p>This method returns the reciprocal of regular numbers, <code class="docutils literal notranslate"><span class="pre">None</span></code> for non-regular numbers:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; a=bn(400)
+&gt;&gt;&gt; a
+6:40
+&gt;&gt;&gt; a.rec()
+9
+&gt;&gt;&gt; a * a.rec()
+1:0:0
+&gt;&gt;&gt; b=bn(406)
+&gt;&gt;&gt; b
+6:46
+&gt;&gt;&gt; b.rec()
+Not regular!
+&gt;&gt;&gt; x = b.rec()
+Not regular!
+&gt;&gt;&gt; x
+&gt;&gt;&gt; type(x)
+&lt;class &#39;NoneType&#39;&gt;
+</pre></div>
+</div>
+</section>
+<section id="inv-n">
+<h4>.inv(n)<a class="headerlink" href="#inv-n" title="Permalink to this heading">¶</a></h4>
+<p>This is a replacement for .rec() for irregular numbers. Irregular numbers can be said to have infinite-digit reciprocals; this method calculates the first <code class="docutils literal notranslate"><span class="pre">n</span></code> of them.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; b=bn(406)
+&gt;&gt;&gt; b
+6:46
+&gt;&gt;&gt; b.isreg
+False
+&gt;&gt;&gt; c=b.inv()
+&gt;&gt;&gt; c
+8:52:1:11
+&gt;&gt;&gt; b * c
+1:0:0:0:0:26
+&gt;&gt;&gt; c=b.inv(10)
+&gt;&gt;&gt; c
+8:52:1:10:56:9:27:29:15:44
+&gt;&gt;&gt; b * c
+1:0:0:0:0:0:0:0:0:0:27:44
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+</section>
+<section id="round-n">
+<h4>.round(n)<a class="headerlink" href="#round-n" title="Permalink to this heading">¶</a></h4>
+<p>Returns the first n sexagesimal digits of the number with rounding:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; c
+8:52:1:10:56:9:27:29:15:44
+&gt;&gt;&gt; c.round(4)
+8:52:1:11
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+<p>Useful when working with approximate floating numbers.</p>
+</section>
+<section id="head-n">
+<h4>.head(n)<a class="headerlink" href="#head-n" title="Permalink to this heading">¶</a></h4>
+<p>Returns the first n sexagesimal digits of the number without rounding:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>8:52:1:10:56:9:27:29:15:44
+&gt;&gt;&gt; c.round(4)
+8:52:1:11
+&gt;&gt;&gt; c.head()  # Without argument, returns the first digit only.
+8
+&gt;&gt;&gt; c.head(3)
+8:52:1
+&gt;&gt;&gt; c.head(7)
+8:52:1:10:56:9:27
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+<p>You will find this method and the next one used in the <code class="docutils literal notranslate"><span class="pre">example-melville.py</span></code> file in your installation directory.</p>
+</section>
+<section id="tail-n">
+<h4>.tail(n)<a class="headerlink" href="#tail-n" title="Permalink to this heading">¶</a></h4>
+<p>Returns the last n sexagesimal digits of the number:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; c
+8:52:1:10:56:9:27:29:15:44
+&gt;&gt;&gt; c.tail()   # Without argument, returns the last digit only.
+44
+&gt;&gt;&gt; c.tail(2)
+15:44
+&gt;&gt;&gt; c.tail(6)
+56:9:27:29:15:44
+&gt;&gt;&gt;
+</pre></div>
+</div>
+</section>
+<section id="dist-n">
+<h4>.dist(n)<a class="headerlink" href="#dist-n" title="Permalink to this heading">¶</a></h4>
+<p>This was not intended for interactive use.</p>
+</section>
+<section id="searchreg-minn-maxn-limdigits-6-prt-false">
+<h4>.searchreg(minn, maxn, limdigits=6, prt=False)<a class="headerlink" href="#searchreg-minn-maxn-limdigits-6-prt-false" title="Permalink to this heading">¶</a></h4>
+<p>Searches the <code class="docutils literal notranslate"><span class="pre">bn.database</span></code> database for the closest regular number to the object’s.
+minn and maxn: must be sexagesimal strings using “:” separator. limdigits max value is 20.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; c
+8:52:1:10:56:9:27:29:15:44
+&gt;&gt;&gt; c.searchreg(&#39;01&#39;, &#39;59&#39;)
+8:51:26:27:36
+&gt;&gt;&gt; c.searchreg(&#39;01&#39;, &#39;59&#39;, 7)
+8:51:26:27:36
+&gt;&gt;&gt; c.searchreg(&#39;01&#39;, &#39;59&#39;, 9)
+8:51:26:27:36
+&gt;&gt;&gt; c.searchreg(&#39;01&#39;, &#39;59&#39;, 19)
+8:52:2:27:52:35:29:35:23:26:15
+&gt;&gt;&gt; bn(7).searchreg(&#39;06:40&#39;, &#39;07:40&#39;, 4, True)
+        72000 06:40
+        54000 06:45
+        37440 06:49:36
+        35775 06:50:03:45
+        19008 06:54:43:12
+        12000 06:56:40
+         6750 07:01:52:30
+        24000 07:06:40
+        43200 07:12
+        50500 07:14:01:40
+        60864 07:16:54:24
+        62640 07:17:24
+        82323 07:22:52:03
+        88000 07:24:26:40
+       108000 07:30
+       126400 07:35:06:40
+       128250 07:35:37:30
+Minimal distance: 6750, closest regular is: 07:01:52:30
+7:1:52:30
+&gt;&gt;&gt;
+</pre></div>
+</div>
+</section>
+</section>
+<section id="metrology">
+<h3>Metrology<a class="headerlink" href="#metrology" title="Permalink to this heading">¶</a></h3>
+<section id="basics">
+<h4>Basics<a class="headerlink" href="#basics" title="Permalink to this heading">¶</a></h4>
+<p>In the following, it is assumed that your startup script contains the lines:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from mesomath.babn import BabN as bn
+from mesomath.npvs import Blen as bl
+from mesomath.npvs import Bsur as bs
+from mesomath.npvs import Bvol as bv
+from mesomath.npvs import Bcap as bc
+from mesomath.npvs import Bwei as bw
+from mesomath.npvs import BsyG as bG
+from mesomath.npvs import BsyS as bS
+from mesomath.npvs import Bbri as bb
+</pre></div>
+</div>
+<p>so that we can access the classes <code class="docutils literal notranslate"><span class="pre">BabN,</span> <span class="pre">Blen,</span> <span class="pre">Bsur,</span></code>… using the shorter aliases <code class="docutils literal notranslate"><span class="pre">bn,</span> <span class="pre">bl,</span> <span class="pre">bs,</span></code> etc.</p>
+<p>This is what the classes <code class="docutils literal notranslate"><span class="pre">bl</span></code>, <code class="docutils literal notranslate"><span class="pre">bs</span></code>, <code class="docutils literal notranslate"><span class="pre">bv</span></code>, <code class="docutils literal notranslate"><span class="pre">bc</span></code>, <code class="docutils literal notranslate"><span class="pre">bw</span></code>, <code class="docutils literal notranslate"><span class="pre">bG</span></code>, <code class="docutils literal notranslate"><span class="pre">bS</span></code> and <code class="docutils literal notranslate"><span class="pre">ba</span></code> represent:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>class  bl: Babylonian length system:
+           danna &lt;-30- UŠ &lt;-60- ninda &lt;-12- kuš3 &lt;-30- šu-si
+
+class  bs: Babylonian surface system:
+           GAN2 &lt;-100- sar &lt;-60- gin2 &lt;-180- še
+
+class  bv: Babylonian volume system:
+           GAN2 &lt;-100- sar &lt;-60- gin2 &lt;-180- še
+
+class  bc: Babylonian capacity system:
+           gur &lt;-5- bariga &lt;-6- ban2 &lt;-10- sila3 &lt;-60- gin2 &lt;-180- še
+
+class  bw: Babylonian weight system:
+           gu2 &lt;-60- ma-na &lt;-60- gin2 &lt;-180- še
+
+class  bG: Babylonian counting System G:
+           šar2-gal &lt;-6- šar&#39;u &lt;-10- šar2 &lt;-6- bur&#39;u &lt;-10- bur3 &lt;-3- eše3 &lt;-6- iku
+
+class  bS: Babylonian counting System S:
+           šar2-gal &lt;-6- šar&#39;u &lt;-10- šar2 &lt;-6- geš&#39;u &lt;-10- geš &lt;-6- u &lt;-10- diš
+
+Class  bb: Babylonian brick counting system:
+           GAN2 &lt;-100- sar &lt;-60- gin2 &lt;-180- še
+</pre></div>
+</div>
+<p>However, for ease of writing, the real or academic names of the units in these metrological systems have been simplified by removing capital letters, numbers, hyphens, and diacritics. Therefore, for inputting measurements, we will use the following unit names:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Class</p></th>
+<th class="head"><p>Metrology</p></th>
+<th class="head"><p>Units</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>bl</p></td>
+<td><p>Babylonian length system</p></td>
+<td><p>susi, kus, ninda, us, danna</p></td>
+</tr>
+<tr class="row-odd"><td><p>bs</p></td>
+<td><p>Babylonian surface system</p></td>
+<td><p>se, gin, sar, gan</p></td>
+</tr>
+<tr class="row-even"><td><p>bv</p></td>
+<td><p>Babylonian volume system</p></td>
+<td><p>se, gin, sar, gan</p></td>
+</tr>
+<tr class="row-odd"><td><p>bc</p></td>
+<td><p>Babylonian capacity system</p></td>
+<td><p>se, gin, sila, ban, bariga, gur</p></td>
+</tr>
+<tr class="row-even"><td><p>bw</p></td>
+<td><p>Babylonian weight system</p></td>
+<td><p>se, gin, mana, gu</p></td>
+</tr>
+<tr class="row-odd"><td><p>bG</p></td>
+<td><p>Babylonian System G</p></td>
+<td><p>iku, ese, bur, buru, sar, saru, sargal</p></td>
+</tr>
+<tr class="row-even"><td><p>bS</p></td>
+<td><p>Babylonian System S</p></td>
+<td><p>dis, u, ges, gesu, sar, saru, sargal</p></td>
+</tr>
+<tr class="row-odd"><td><p>bb</p></td>
+<td><p>Babylonian brick counting system</p></td>
+<td><p>se gin sar gan</p></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><p>Note that scribes wrote volumes as an equivalent surface area multiplied by a standard height of 1 kus; thus, they used the same metrology for surfaces and volumes. Here, however, two different classes will be used, so that one can multiply a surface area by a length to obtain a volume, but one cannot multiply a volume by a length to obtain a four-dimensional volume, which was probably beyond the scribes’ understanding.</p>
+</div></blockquote>
+<p>At any time, you can review the names of the units in each system and their factors through the following, e.g., for capacities:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; bc.uname
+[&#39;se&#39;, &#39;gin&#39;, &#39;sila&#39;, &#39;ban&#39;, &#39;bariga&#39;, &#39;gur&#39;]
+&gt;&gt;&gt; bc.ufact
+[180, 60, 10, 6, 5]
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+<p>and the academic names:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; bc.aname
+[&#39;še&#39;, &#39;gin2&#39;, &#39;sila3&#39;, &#39;ban2&#39;, &#39;bariga&#39;, &#39;gur&#39;]
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; print(*bc.scheme(bc))
+gur &lt;-5- bariga &lt;-6- ban &lt;-10- sila &lt;-60- gin &lt;-180- se
+&gt;&gt;&gt; print(*bc.scheme(bc,1))
+gur &lt;-5- bariga &lt;-6- ban2 &lt;-10- sila3 &lt;-60- gin2 &lt;-180- še
+&gt;&gt;&gt;
+</pre></div>
+</div>
+<p>In a similar way to what we saw for sexagesimal numbers with the <code class="docutils literal notranslate"><span class="pre">bn</span></code> class. We can introduce measurements in two different ways:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; a = bl(11111)
+&gt;&gt;&gt; a
+30 ninda 10 kus 11 susi
+&gt;&gt;&gt; b = bl(&#39;5 ninda 25 susi&#39;)
+&gt;&gt;&gt; b
+5 ninda 25 susi
+</pre></div>
+</div>
+<p>In the first case, <code class="docutils literal notranslate"><span class="pre">a</span></code> is defined as a certain (integer) number of times the smallest unit (“susi” in the case of lengths). In the second case, we define the value for <code class="docutils literal notranslate"><span class="pre">b</span></code> textually. Note that we can only use integer values ​​in both cases. Both input methods are available for all classes.</p>
+<blockquote>
+<div><p>In fact, there is a <strong>third</strong> entry method that will be seen at the end of this section.</p>
+</div></blockquote>
+<p>Once you have defined measurements, you can “explain” them:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; a.explain()
+This is a Babylonian length meassurement: 30 ninda 10 kus 11 susi
+    Metrology:  danna &lt;-30- us &lt;-60- ninda &lt;-12- kus &lt;-30- susi
+    Factor with unit &#39;susi&#39;:  1 30 360 21600 648000
+Meassurement in terms of the smallest unit: 11111 (susi)
+Sexagesimal floating value of the above: 3:5:11
+Approximate SI value: 185.18333333333334 meters
+&gt;&gt;&gt; 
+&gt;&gt;&gt; b.explain()
+This is a Babylonian length meassurement: 5 ninda 25 susi
+    Metrology:  danna &lt;-30- us &lt;-60- ninda &lt;-12- kus &lt;-30- susi
+    Factor with unit &#39;susi&#39;:  1 30 360 21600 648000
+Meassurement in terms of the smallest unit: 1825 (susi)
+Sexagesimal floating value of the above: 30:25
+Approximate SI value: 30.416666666666668 meters
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+<p>That will give us information about the nature of the measurement and the properties of the measurement system being used.</p>
+<p>Note that the value given as “Sexagesimal floating value of the above:” is generated by the <code class="docutils literal notranslate"><span class="pre">.sex()</span></code> method; however, this method accepts a numeric parameter to indicate the unit relative to which this sexagesimal floating value is calculated. This parameter defaults to zero, indicating the first unit in the list provided by <code class="docutils literal notranslate"><span class="pre">.explain()</span></code>: <code class="docutils literal notranslate"><span class="pre">Unit</span> <span class="pre">names:</span> <span class="pre">['susi',</span> <span class="pre">'kus',</span> <span class="pre">'ninda',</span> <span class="pre">'us',</span> <span class="pre">'danna']</span></code></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; a.sex()   # susi as the base unit
+3:5:11
+&gt;&gt;&gt; a.sex(0)  # the same as .sex()
+3:5:11
+&gt;&gt;&gt; a.sex(1)  # kus as the base unit
+6:10:22
+&gt;&gt;&gt; a.sex(2)  # ninda as the base unit
+30:51:50
+&gt;&gt;&gt; a.sex(3)  # us as the base unit
+30:51:50
+&gt;&gt;&gt; a.sex(4)  # danna as the base unit
+1:1:43:40
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+<p>This will be useful if you intend to recreate <strong>Metrological lists</strong>. For example, code:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from mesomath.npvs import Blen as bl
+
+ls =[]
+for i in range(1,10):
+    ls.append(str(i)+&#39; susi&#39;)
+for i in &#39;10 15 20 25&#39;.split():
+    ls.append(i+&#39; susi&#39;)
+ls.append(&#39;1 kus&#39;)
+for i in &#39;10 15 20 25&#39;.split():
+    ls.append(&#39;1 kus &#39;+i+&#39; susi&#39;)
+ls.append(&#39;2 kus&#39;)
+for i in ls:
+    x=bl(i)
+    print(f&#39;{str(x).ljust(15)} -&gt; {str(x.sex(2)).rjust(6)}&#39;)
+</pre></div>
+</div>
+<p>will print this excerpt of the metrological table for length using ninda (x.sex(2)) as base unit:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1 susi          -&gt;     10
+2 susi          -&gt;     20
+3 susi          -&gt;     30
+4 susi          -&gt;     40
+5 susi          -&gt;     50
+6 susi          -&gt;      1
+7 susi          -&gt;   1:10
+8 susi          -&gt;   1:20
+9 susi          -&gt;   1:30
+10 susi         -&gt;   1:40
+15 susi         -&gt;   2:30
+20 susi         -&gt;   3:20
+25 susi         -&gt;   4:10
+1 kus           -&gt;      5
+1 kus 10 susi   -&gt;   6:40
+1 kus 15 susi   -&gt;   7:30
+1 kus 20 susi   -&gt;   8:20
+1 kus 25 susi   -&gt;   9:10
+2 kus           -&gt;     10
+</pre></div>
+</div>
+<p>(See page 8 of <a class="reference external" href="https://hal.science/hal-01515645v2/document">Floating calculation in Mesopotamia</a> by Christine Proust).</p>
+<blockquote>
+<div><p>The <code class="docutils literal notranslate"><span class="pre">metrotable.py</span></code> tool, which specializes in printing segments of metrological tables, is located in the <code class="docutils literal notranslate"><span class="pre">progs</span></code> subdirectory of this package. It also includes its own <a class="reference external" href="https://jccsvq.github.io/mesomath/progs/metrotable.html">tutorial</a>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">mtlookup.py</span></code> tool in the <code class="docutils literal notranslate"><span class="pre">progs</span></code> subdirectory simulates direct and inverse searches in metrological tables. It also includes its own <a class="reference external" href="https://jccsvq.github.io/mesomath/progs/mtlookup.html">tutorial</a>.</p>
+</div></blockquote>
+<p>Since version v1.1.0 you can get the metrological value of an object directly using the <code class="docutils literal notranslate"><span class="pre">.metval()</span></code> method:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; bl(&#39;1 kus 15 susi&#39;).metval()
+7:30
+&gt;&gt;&gt;
+</pre></div>
+</div>
+</section>
+<section id="operations">
+<h4>Operations<a class="headerlink" href="#operations" title="Permalink to this heading">¶</a></h4>
+<p>For objects of the same class, the following operations are available:</p>
+<ul class="simple">
+<li><p>Addition</p></li>
+<li><p>Subtraction (returns the absolute value of the difference)</p></li>
+<li><p>Multiplication by a number</p></li>
+<li><p>Division by a number</p></li>
+<li><p>Logical operations</p></li>
+</ul>
+<p>Let’s look at some examples:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; a &gt;= b
+True
+&gt;&gt;&gt; a+b
+35 ninda 11 kus 6 susi
+&gt;&gt;&gt; a-b
+25 ninda 9 kus 16 susi
+&gt;&gt;&gt; b-a                   # a-b == b-a !!!
+&gt;&gt;&gt; a-b == b-a
+True
+25 ninda 9 kus 16 susi
+&gt;&gt;&gt; 2*a
+1 us 1 ninda 8 kus 22 susi
+&gt;&gt;&gt; b*2
+10 ninda 1 kus 20 susi
+&gt;&gt;&gt; b*2.5
+12 ninda 8 kus 2 susi
+&gt;&gt;&gt; a/2
+15 ninda 5 kus 6 susi
+&gt;&gt;&gt; (a+2*b)/5
+8 ninda 2 kus 12 susi
+&gt;&gt;&gt; (a+2*b)/5.3
+7 ninda 8 kus 25 susi
+&gt;&gt;&gt;
+</pre></div>
+</div>
+<p>Additionally, for length measurements we can multiply them together to obtain surfaces and volumes, and for surfaces we can multiply them by lengths to obtain volumes:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; c = bl(&#39;2 kus&#39;)
+&gt;&gt;&gt; c
+2 kus
+&gt;&gt;&gt; s=a*b
+&gt;&gt;&gt; s
+1 gan 56 sar 27 gin 138 se
+&gt;&gt;&gt; s.explain()
+This is a Babylonian surface meassurement: 1 gan 56 sar 27 gin 138 se
+    Metrology:  gan &lt;-100- sar &lt;-60- gin &lt;-180- se
+    Factor with unit &#39;se&#39;:  1 180 10800 1080000
+Meassurement in terms of the smallest unit: 1689798 (se)
+Sexagesimal floating value of the above: 7:49:23:18
+Approximate SI value: 5632.66 square meters
+&gt;&gt;&gt; v=s*c
+&gt;&gt;&gt; v
+3 gan 12 sar 55 gin 96 se
+&gt;&gt;&gt; v.explain()
+This is a Babylonian volume meassurement: 3 gan 12 sar 55 gin 96 se
+    Metrology:  gan &lt;-100- sar &lt;-60- gin &lt;-180- se
+    Factor with unit &#39;se&#39;:  1 180 10800 1080000
+Meassurement in terms of the smallest unit: 3379596 (se)
+Sexagesimal floating value of the above: 15:38:46:36
+Approximate SI value: 5632.66 cube meters
+
+&gt;&gt;&gt; v2=a*b*c
+&gt;&gt;&gt; v2 == v
+True
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+</section>
+<section id="systems-s-and-g">
+<h4>Systems S and G<a class="headerlink" href="#systems-s-and-g" title="Permalink to this heading">¶</a></h4>
+<p>Finally, in cases like this:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; a = bv(&#39;128 gan&#39;)
+&gt;&gt;&gt; a
+128 gan
+&gt;&gt;&gt;
+</pre></div>
+</div>
+<p>we might prefer to see the coefficients of the units expressed in the S system (G system for surfaces and volumes), to do this:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; bv.prtsex=True
+&gt;&gt;&gt; a
+(7 bur 2 iku) gan
+&gt;&gt;&gt;
+</pre></div>
+</div>
+<p>This changes the default for objects of the <code class="docutils literal notranslate"><span class="pre">bv</span></code> class and makes the output more closely mimic the way the measurements were actually inscribed on the clay tablets, but it complicates things for the modern reader:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; a = bv(&#39;128 gan 133 se&#39;)
+&gt;&gt;&gt; a
+(7 bur 2 iku) gan (2 ges 1 u 3 dis) se
+&gt;&gt;&gt;
+</pre></div>
+</div>
+<p>If you want this to be the default for all classes, add:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from mesomath.npvs import MesoM
+MesoM.prtsex = True
+</pre></div>
+</div>
+<p>to your <code class="docutils literal notranslate"><span class="pre">initmm.py</span></code> file or initiation script.</p>
+<p>The third input method cited above makes use of these types of strings; in fact, the parentheses have been introduced to make them easier to parse as input:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; b = bv(&#39;460800 gan 44 sar 20 gin&#39;)
+&gt;&gt;&gt; b
+(7 sargal 6 sar 4 buru) gan (4 u 4 dis) sar (2 u) gin
+&gt;&gt;&gt; c = bv(&#39;(7 sargal 6 sar 4 buru) gan (4 u 4 dis) sar (2 u) gin&#39;)
+&gt;&gt;&gt; c
+(7 sargal 6 sar 4 buru) gan (4 u 4 dis) sar (2 u) gin
+&gt;&gt;&gt; bv.prtsex = False
+&gt;&gt;&gt; c
+460800 gan 44 sar 20 gin
+&gt;&gt;&gt;
+</pre></div>
+</div>
+</section>
+<section id="fractions">
+<h4>Fractions<a class="headerlink" href="#fractions" title="Permalink to this heading">¶</a></h4>
+<p>There is also basic support for entering <em>principal fractions</em>: <code class="docutils literal notranslate"><span class="pre">1/6,</span> <span class="pre">1/3,</span> <span class="pre">1/2,</span> <span class="pre">2/3,</span> <span class="pre">5/6</span></code> (and only for them), thei can be entered in several ways:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; a=bl(&#39;0+1/3 ninda&#39;)
+&gt;&gt;&gt; a
+4 kus
+&gt;&gt;&gt; a=bl(&#39;+1/3 ninda&#39;)
+&gt;&gt;&gt; a
+4 kus
+&gt;&gt;&gt; a=bl(&#39;1/3 ninda&#39;)
+&gt;&gt;&gt; a
+4 kus
+&gt;&gt;&gt; a=bl(&#39;2 + 1/3 ninda&#39;)
+&gt;&gt;&gt; a
+2 ninda 4 kus
+&gt;&gt;&gt; a=bl(&#39;2 1/3 ninda&#39;)
+&gt;&gt;&gt; a
+2 ninda 4 kus
+&gt;&gt;&gt; a=bl(&#39;21/3 ninda&#39;)
+&gt;&gt;&gt; a
+2 ninda 4 kus
+</pre></div>
+</div>
+<p>For output using <code class="docutils literal notranslate"><span class="pre">1/3,</span> <span class="pre">1/2,</span> <span class="pre">2/3,</span> <span class="pre">5/6</span></code> fractions, you can use the <code class="docutils literal notranslate"><span class="pre">.prtf()</span></code> method:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; a=bl(11223344)
+&gt;&gt;&gt; a
+17 danna 9 us 35 ninda 11 kus 14 susi
+&gt;&gt;&gt; a.prtf()
+&#39;17 danna 9 1/2 us 5 5/6 ninda 1 1/3 kus 4 susi&#39;
+&gt;&gt;&gt;
+</pre></div>
+</div>
+<p>and if you wish also include  <code class="docutils literal notranslate"><span class="pre">1/6</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; a.prtf(1)
+&#39;17 1/6 danna 4 1/2 us 5 5/6 ninda 1 1/3 kus 4 susi&#39;
+&gt;&gt;&gt;
+</pre></div>
+</div>
+<p>If you activate <code class="docutils literal notranslate"><span class="pre">prtsex</span></code> you get:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; bl.prtsex=True
+&gt;&gt;&gt; a.prtf()
+&#39;(1 u 7 dis) danna (9 dis) 1/2 us (5 dis) 5/6 ninda (1 dis) 1/3 kus (4 dis) susi&#39;
+&gt;&gt;&gt; a.prtf(1)
+&#39;(1 u 7 dis) 1/6 danna (4 dis) 1/2 us (5 dis) 5/6 ninda (1 dis) 1/3 kus (4 dis) susi&#39;
+&gt;&gt;&gt;
+</pre></div>
+</div>
+<p>These results can be used for input:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; bl.prtsex=0
+&gt;&gt;&gt; b=bl(&#39;(1 u 7 dis) 1/6 danna (4 dis) 1/2 us (5 dis) 5/6 ninda (1 dis) 1/3 kus (4 dis) susi&#39;)
+&gt;&gt;&gt; b
+17 danna 9 us 35 ninda 11 kus 14 susi
+&gt;&gt;&gt; b.prtf()
+&#39;17 danna 9 1/2 us 5 5/6 ninda 1 1/3 kus 4 susi&#39;
+&gt;&gt;&gt; b.prtf(1)
+&#39;17 1/6 danna 4 1/2 us 5 5/6 ninda 1 1/3 kus 4 susi&#39;
+&gt;&gt;&gt; b.dec
+11223344
+&gt;&gt;&gt; c=bl(a.prtf(1))
+&gt;&gt;&gt; c.dec
+11223344
+&gt;&gt;&gt;
+</pre></div>
+</div>
+</section>
+<section id="academic-names">
+<h4>Academic names<a class="headerlink" href="#academic-names" title="Permalink to this heading">¶</a></h4>
+<p>Since v1.1.0, the .prtf() method has a second switch that allows the academic unit names to be used in the output:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; a=bl(11223344)
+&gt;&gt;&gt; a.prtf()
+&#39;17 danna 9 1/2 us 5 5/6 ninda 1 1/3 kus 4 susi&#39;
+&gt;&gt;&gt; a.prtf(1)
+&#39;17 1/6 danna 4 1/2 us 5 5/6 ninda 1 1/3 kus 4 susi&#39;
+&gt;&gt;&gt; a.prtf(1,1)
+&#39;17 1/6 danna 4 1/2 UŠ 5 5/6 ninda 1 1/3 kuš3 4 šu-si&#39;
+&gt;&gt;&gt; bl.prtsex=True
+&gt;&gt;&gt; a.prtf(0,1)
+&#39;(1 u 7 dis) danna (9 dis) 1/2 UŠ (5 dis) 5/6 ninda (1 dis) 1/3 kuš3 (4 dis) šu-si&#39;
+&gt;&gt;&gt; a.prtf(1,1)
+&#39;(1 u 7 dis) 1/6 danna (4 dis) 1/2 UŠ (5 dis) 5/6 ninda (1 dis) 1/3 kuš3 (4 dis) šu-si&#39;
+&gt;&gt;&gt;
+</pre></div>
+</div>
+<p>This kind of string can also be used as input:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; b=bl(&#39;(1 u 7 dis) 1/6 danna (4 dis) 1/2 UŠ (5 dis) 5/6 ninda (1 dis) 1/3 kuš3 (4 dis) šu-si&#39;)
+&gt;&gt;&gt; b.dec
+11223344
+&gt;&gt;&gt;
+</pre></div>
+</div>
+<p>equivalent to:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; b=bl(a.prtf(1,1))
+&gt;&gt;&gt; b.dec
+11223344
+&gt;&gt;&gt;
+</pre></div>
+</div>
+</section>
+<section id="volume-vs-capacity">
+<h4>Volume vs. Capacity<a class="headerlink" href="#volume-vs-capacity" title="Permalink to this heading">¶</a></h4>
+<p>There were two systems for measuring volume: <strong>capacities</strong>, used to measure grain, beer, and other types of food and goods, and <strong>volume</strong> proper, used to measure everything else. Here, they are represented by the metrological classes <code class="docutils literal notranslate"><span class="pre">Bcap</span></code> (imported here as <code class="docutils literal notranslate"><span class="pre">bc</span></code>) and <code class="docutils literal notranslate"><span class="pre">Bvol</span></code> (<code class="docutils literal notranslate"><span class="pre">bv</span></code>), respectively. Since they are two systems for measuring the same physical quantity, we can convert quantities from one system to the other with the methods <code class="docutils literal notranslate"><span class="pre">.cap()</span></code> and <code class="docutils literal notranslate"><span class="pre">.vol()</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; a = bv(&#39;1 gin&#39;)
+&gt;&gt;&gt; a.explain()
+This is a Babylonian volume meassurement: 1 gin
+    Metrology:  gan &lt;-100- sar &lt;-60- gin &lt;-180- se
+    Factor with unit &#39;se&#39;:  1 180 10800 1080000
+Meassurement in terms of the smallest unit: 180 (se)
+Sexagesimal floating value of the above: 3
+Approximate SI value: 0.3 cube meters
+&gt;&gt;&gt; b = a.cap()
+&gt;&gt;&gt; b.explain()
+This is a Babylonian capacity meassurement: 1 gur
+    Metrology:  gur &lt;-5- bariga &lt;-6- ban &lt;-10- sila &lt;-60- gin &lt;-180- se
+    Factor with unit &#39;se&#39;:  1 180 10800 108000 648000 3240000
+Meassurement in terms of the smallest unit: 3240000 (se)
+Sexagesimal floating value of the above: 15
+Approximate SI value: 300.0 litres
+&gt;&gt;&gt; (b.vol()).explain()
+This is a Babylonian volume meassurement: 1 gin
+    Metrology:  gan &lt;-100- sar &lt;-60- gin &lt;-180- se
+    Factor with unit &#39;se&#39;:  1 180 10800 1080000
+Meassurement in terms of the smallest unit: 180 (se)
+Sexagesimal floating value of the above: 3
+Approximate SI value: 0.3 cube meters
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+</section>
+<section id="bricks">
+<h4>Bricks<a class="headerlink" href="#bricks" title="Permalink to this heading">¶</a></h4>
+<p>Volume measurements were frequently transformed into their “brick” equivalents. These were measured in “<em>sar-b</em>” (units or packages of 720 bricks), and each brick type was characterized by its “<em>Nalbanum</em>,” or the number of <em>sar-b</em> of that type that fits in 1 <em>sar</em> of volume. The <code class="docutils literal notranslate"><span class="pre">.sarb()</span></code> method allows us to perform this transformation:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; a = bv(&#39;1 sar&#39;)
+&gt;&gt;&gt; a
+1 sar
+&gt;&gt;&gt; b = a.bricks()
+&gt;&gt;&gt; b
+1 sar
+&gt;&gt;&gt; b.explain()
+This is a Babylonian brick counting: 1 sar
+    Metrology:  gan &lt;-100- sar &lt;-60- gin &lt;-180- se
+    Factor with unit &#39;se&#39;:  1 180 10800 1080000
+Meassurement in terms of the smallest unit: 10800 (se)
+Sexagesimal floating value of the above: 3
+Approximate SI value: 720.0 bricks
+</pre></div>
+</div>
+<p>This is for  <em>nalbanum</em> =1.0  type-12 bricks, for type-2 bricks with decimal <em>nalbanum</em> = 7.20:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; b = a.bricks(7.20)
+&gt;&gt;&gt; b
+7 sar 12 gin
+&gt;&gt;&gt; b.SI()
+&#39;5184.0 bricks&#39;
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+<p>If you have 10000 type-2 bricks, you can do:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; c = bb(15 * 10000)
+&gt;&gt;&gt; c
+13 sar 53 gin 60 se
+&gt;&gt;&gt; c.SI()
+&#39;10000.0 bricks&#39;
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">c</span></code> is a Bbri object:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; c.explain()
+This is a Babylonian brick counting: 13 sar 53 gin 60 se
+    Metrology:  gan &lt;-100- sar &lt;-60- gin &lt;-180- se
+    Factor with unit &#39;se&#39;:  1 180 10800 1080000
+Meassurement in terms of the smallest unit: 150000 (se)
+Sexagesimal floating value of the above: 41:40
+Approximate SI value: 10000.0 bricks
+&gt;&gt;&gt; 
+</pre></div>
+</div>
+<p>that you can convert into a volume:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; d = c.vol(7.20)
+&gt;&gt;&gt; d.explain()
+This is a Babylonian volume meassurement: 1 sar 55 gin 133 se
+    Metrology:  gan &lt;-100- sar &lt;-60- gin &lt;-180- se
+    Factor with unit &#39;se&#39;:  1 180 10800 1080000
+Meassurement in terms of the smallest unit: 20833 (se)
+Sexagesimal floating value of the above: 5:47:13
+Approximate SI value: 34.721666666666664 cube meters
+&gt;&gt;&gt;
+</pre></div>
+</div>
+<p>Here is an excerpt from a table found
+<a class="reference external" href="https://personal.us.es/cmaza/mesopotamia/edificios.htm#Tipos%20de%20ladrillos">here</a> (Spanish only, sorry):</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Brick type</p></th>
+<th class="head"><p>Nalb. (dec.)</p></th>
+<th class="head"><p>Nalb. (sex.)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>9.00</p></td>
+<td><p>9</p></td>
+</tr>
+<tr class="row-odd"><td><p>1a</p></td>
+<td><p>8.33</p></td>
+<td><p>8:20</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>7.20</p></td>
+<td><p>7:12</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>5.40</p></td>
+<td><p>5:24</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>5.00</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>4.80</p></td>
+<td><p>4:48</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>3.33</p></td>
+<td><p>3:20</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>2.70</p></td>
+<td><p>2:42</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>2.25</p></td>
+<td><p>2:15</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>1.875</p></td>
+<td><p>1:52:30</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>1.20</p></td>
+<td><p>1:12</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>1.00</p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="appendix-output-from-test-babn-py">
+<h2>Appendix: Output from <code class="docutils literal notranslate"><span class="pre">test-babn.py</span></code><a class="headerlink" href="#appendix-output-from-test-babn-py" title="Permalink to this heading">¶</a></h2>
+<p>Open a terminal on the installation directory and issue:</p>
+<p>$ python3 test-babn.py</p>
+<p>You should get a long listing free of errors similar to the following (some differences are allowed)</p>
+<p>Output:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Some basic tests of BabN class follow:
+
+A couple of BabN numbers: a: 1:12:23 and b: 6:45
+    Are they regular? a: False, b: True
+    Factors a: (0, 0, 0, 4343), b: (0, 4, 1, 1)
+Otherwise:
+a.explain()
+|  Sexagesimal number: [1, 12, 23] is the decimal number: 4343.
+|    It may be written as 2^0 * 3^0 * 5^0 * 4343),
+|    so, it is NOT a regular number and has NO reciprocal.
+|    but an approximate inverse is: 49:44:6:45
+|    and a close regular is: 1:12:20:16:40
+|    whose reciprocal is: 49:45:59:2:24
+b.explain()
+|  Sexagesimal number: [6, 45] is the decimal number: 405.
+|    It may be written as 2^0 * 3^4 * 5^1 * 1),
+|    so, it is a regular number with reciprocal: 8:53:20
+
+Basic operations with them:
+     a + b =  1:19:8
+     a - b =  1:5:38
+     a * b =  8:8:35:15
+    a**2 =  1:27:19:20:49
+    a**4 =  2:7:5:12:36:24:15:20:1
+
+Product result is not floating by default:
+    BabN(&quot;12.13.0.0&quot;)*BabN(&quot;1.23.45.0.0.0&quot;) = 17:3:8:45:0:0:0:0:0
+    but you can change this by issuing: BabN.floatmult = True
+    then:
+    BabN(&quot;12.13.0.0&quot;)*BabN(&quot;1.23.45.0.0.0&quot;) = 17:3:8:45
+    ...(restoring default to BabN.floatmult = False)
+
+Basic operations with positive integers:
+     111 + b =  8:36
+     a - b =  1:5:38
+     a / 43 =  1:41
+    3 * BabN(20) =  1:0
+
+Comparisons:
+     a &gt; b =  True
+     a &lt;= b =  False
+     not a &lt;= b =  True
+    a == a =  True
+    a != a - 1 =  True
+
+Comparisons with positive integers:
+     a &gt; 100 =  True
+     500 &lt;= b =  False
+     not a &lt;= 47 =  True
+
+Approximate inverse of a is: 49:44:6:45
+    Testing: a*a.inv() = 1:0:0:0:0:35:15
+    Now using a.inv(8) we have: 49:44:6:44:30:46:50:2
+    Testing: a*a.inv(8) = 59:59:59:59:59:59:59:59:34:46
+    b/a =  5:35:42:45:30:28
+    (b/a).len() =  6
+
+For regular number b: 6:45
+    Reciprocal of b:  8:53:20
+    Inverse of b:  8:53:20
+    Babylonian division a//b =  10:43:24:26:40
+
+From now on,  BabN.sep is &quot;.&quot;, as in MesoCalc (http://baptiste.meles.free.fr/site/mesocalc.html)
+    a//b =  10.43.24.26.40
+
+Other operations:
+    BabN(3)*(a+b)**2 // b =  46.23.8.55.6.40
+    but you can mix operations with int&#39;s
+    3*(a+b)**2 // b =  46.23.8.55.6.40
+    BabN(2).sqrt() = 1.24.51.10.7.46, BabN(2).sqrt()**2 = 1.59.59.59.59.59.42.48.20.19.16
+    Let us round it: (BabN(2).sqrt()**2).round(6) = 2.0.0.0.0.0
+    or: ((BabN(2).sqrt()**2).round(6)).f() = 2
+    .f() is a synonym for .float() !
+    (BabN(2).sqrt()).dec/60.**5 = 1.4142135622427983
+             Compare to sqrt(2) = 1.4142135623730951
+
+From now on, BabN.rdigits is: 4
+    (30*BabN(2).sqrt()).float() =  42.25.35 
+        Compare to YBC 7289 (https://en.wikipedia.org/wiki/YBC_7289)
+
+    BabN(2).cbrt() = 1.15.35.43, BabN(2).cbrt()**3 = 2.0.0.0.15.12.26.47.50.7
+
+Database search for close regulars:
+a.searchreg(&#39;01:10&#39;,&#39;01:20&#39;,5,1)
+       447300 01:10:18:45
+       274800 01:11:06:40
+        82800 01:12
+         9800 01:12:20:16:40
+        93840 01:12:49:04
+       111600 01:12:54
+       290448 01:13:43:40:48
+       308430 01:13:48:40:30
+       365200 01:14:04:26:40
+       565200 01:15
+       749200 01:15:51:06:40
+       767700 01:15:56:15
+       954000 01:16:48
+      1142416 01:17:40:20:16
+      1161360 01:17:45:36
+      1240200 01:18:07:30
+      1371312 01:18:43:55:12
+      1645200 01:20
+Minimal distance: 9800, closest regular is: 01:12:20:16:40
+    its reciprocal is: 49.45.59.2.24, compare to a.inv(): 49.44.6.45
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/mesomath.png" alt="Logo"/>
+            </a></p>
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">MesoMath <code class="docutils literal notranslate"><span class="pre">v1.1.0</span></code> Tutorial</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a><ul>
+<li><a class="reference internal" href="#getting-it">Getting it</a></li>
+<li><a class="reference internal" href="#requirements">Requirements</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#running-mesomath-as-a-mesopotamian-babylonian-calculator">Running MesoMath as a Mesopotamian/Babylonian calculator</a><ul>
+<li><a class="reference internal" href="#the-simplest">The simplest</a></li>
+<li><a class="reference internal" href="#to-work-in-directories-other-than-the-installation-directory">To work in directories other than the installation directory</a></li>
+<li><a class="reference internal" href="#create-scripts">Create scripts</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#hands-on">Hands on</a><ul>
+<li><a class="reference internal" href="#first-steps">First steps</a><ul>
+<li><a class="reference internal" href="#introducing-or-creating-babylonian-numbers">Introducing or creating Babylonian numbers</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#basic-arithmetic">Basic arithmetic</a><ul>
+<li><a class="reference internal" href="#addition">Addition</a></li>
+<li><a class="reference internal" href="#subtraction">Subtraction</a></li>
+<li><a class="reference internal" href="#multiplication">Multiplication</a></li>
+<li><a class="reference internal" href="#powers">Powers</a></li>
+<li><a class="reference internal" href="#division">Division</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#roots">Roots</a><ul>
+<li><a class="reference internal" href="#square-root">Square root</a></li>
+<li><a class="reference internal" href="#cube-root">Cube root</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#complex-expressions">Complex expressions</a></li>
+<li><a class="reference internal" href="#logical-operators">Logical operators</a></li>
+<li><a class="reference internal" href="#other-babn-class-attribute">Other BabN class  attribute</a></li>
+<li><a class="reference internal" href="#other-babn-class-methods">Other BabN class methods</a><ul>
+<li><a class="reference internal" href="#rec">.rec()</a></li>
+<li><a class="reference internal" href="#inv-n">.inv(n)</a></li>
+<li><a class="reference internal" href="#round-n">.round(n)</a></li>
+<li><a class="reference internal" href="#head-n">.head(n)</a></li>
+<li><a class="reference internal" href="#tail-n">.tail(n)</a></li>
+<li><a class="reference internal" href="#dist-n">.dist(n)</a></li>
+<li><a class="reference internal" href="#searchreg-minn-maxn-limdigits-6-prt-false">.searchreg(minn, maxn, limdigits=6, prt=False)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#metrology">Metrology</a><ul>
+<li><a class="reference internal" href="#basics">Basics</a></li>
+<li><a class="reference internal" href="#operations">Operations</a></li>
+<li><a class="reference internal" href="#systems-s-and-g">Systems S and G</a></li>
+<li><a class="reference internal" href="#fractions">Fractions</a></li>
+<li><a class="reference internal" href="#academic-names">Academic names</a></li>
+<li><a class="reference internal" href="#volume-vs-capacity">Volume vs. Capacity</a></li>
+<li><a class="reference internal" href="#bricks">Bricks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#appendix-output-from-test-babn-py">Appendix: Output from <code class="docutils literal notranslate"><span class="pre">test-babn.py</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="release-notes.html"
+                          title="previous chapter">Release Notes</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="progs/metrotable.html"
+                          title="next chapter"><code class="docutils literal notranslate"><span class="pre">metrotable</span></code> tutorial</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/tutorial.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="progs/metrotable.html" title="metrotable tutorial"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="release-notes.html" title="Release Notes"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">MesoMath 1.1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">MesoMath <code class="docutils literal notranslate"><span class="pre">v1.1.0</span></code> Tutorial</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2025, jccsvq.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,1063 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>API &#8212; MesoMath 1.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    
+    <link rel="shortcut icon" href="_static/favicon.svg"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="mtlookup tutorial" href="progs/mtlookup.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="progs/mtlookup.html" title="mtlookup tutorial"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">MesoMath 1.1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">API</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="api">
+<h1>API<a class="headerlink" href="#api" title="Permalink to this heading">¶</a></h1>
+<section id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+</section>
+<section id="mesomath">
+<h2>mesomath<a class="headerlink" href="#mesomath" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-mesomath.babn">
+<span id="mesomath-babn"></span><h2>mesomath.babn<a class="headerlink" href="#module-mesomath.babn" title="Permalink to this heading">¶</a></h2>
+<p>This module implements class Babn for sexagesimal representation of the natural numbers
+and their basic arithmetic operations, especially in their “floating” version,
+as performed by Babylonian scribes. Hence the name.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="mesomath.babn.BabN">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mesomath.babn.</span></span><span class="sig-name descname"><span class="pre">BabN</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.babn.BabN" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class implements a sexagesimal representation of the natural numbers
+and their basic arithmetic operations, especially in their “floating” version,
+as performed by Babylonian scribes. Hence the name.</p>
+<section id="class-attributes">
+<h3>Class attributes:<a class="headerlink" href="#class-attributes" title="Permalink to this heading">¶</a></h3>
+<dl class="field-list">
+<dt class="field-odd">title<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Describe the type of object</p>
+</dd>
+<dt class="field-even">type title<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">sep<span class="colon">:</span></dt>
+<dd class="field-odd"><p>separator for string representation (default: “:”)</p>
+</dd>
+<dt class="field-even">type sep<span class="colon">:</span></dt>
+<dd class="field-even"><p>str, (default: “:”)</p>
+</dd>
+<dt class="field-odd">fill<span class="colon">:</span></dt>
+<dd class="field-odd"><p>if True writes: “01.33.07” instead of “1.33.7”</p>
+</dd>
+<dt class="field-even">type fill<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool,  (default: False)</p>
+</dd>
+<dt class="field-odd">rdigits<span class="colon">:</span></dt>
+<dd class="field-odd"><p>approximate number of sexagesimal digits for some results</p>
+</dd>
+<dt class="field-even">type rdigits<span class="colon">:</span></dt>
+<dd class="field-even"><p>int, (default: 6:)</p>
+</dd>
+<dt class="field-odd">floatmult<span class="colon">:</span></dt>
+<dd class="field-odd"><p>If True, multiplication result is floating</p>
+</dd>
+<dt class="field-even">type floatmult<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool, (default: False)</p>
+</dd>
+<dt class="field-odd">database<span class="colon">:</span></dt>
+<dd class="field-odd"><p>path to SQLite3 database of regular numbers providing:</p>
+<div class="line-block">
+<div class="line">regular:    TEXT, regular number e.g. 01:18:43:55:12</div>
+<div class="line">len:     INTEGER, its length e.g. 5 for 01:18:43:55:12</div>
+<div class="line">see <code class="docutils literal notranslate"><span class="pre">createDB.py</span></code> or <code class="docutils literal notranslate"><span class="pre">hamming.py</span></code> for how to generate it</div>
+</div>
+</dd>
+<dt class="field-even">type database<span class="colon">:</span></dt>
+<dd class="field-even"><p>str, (default: “regular.db3”)</p>
+</dd>
+</dl>
+</section>
+<section id="instance-attributes">
+<h3>Instance attributes:<a class="headerlink" href="#instance-attributes" title="Permalink to this heading">¶</a></h3>
+<dl class="field-list simple">
+<dt class="field-odd">dec<span class="colon">:</span></dt>
+<dd class="field-odd"><p>decimal versión of number (ex: 405 for sexagesimal “6:45”)</p>
+</dd>
+<dt class="field-even">type dec<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+<dt class="field-odd">list<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of sexagesimal digits of number (ex: [6, 45] for 405 or “6:45”)</p>
+</dd>
+<dt class="field-even">type list<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+<dt class="field-odd">isreg<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if number is regular (only contains 2, 3, 5 as divisors)</p>
+</dd>
+<dt class="field-even">type isreg<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+<dt class="field-odd">factors<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple with the powers of 2, 3, 5 and the remainder</p>
+</dd>
+<dt class="field-even">type factors<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple</p>
+</dd>
+</dl>
+<p>jccsvq fecit, 2005. Public domain.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="mesomath.babn.BabN.cbrt">
+<span class="sig-name descname"><span class="pre">cbrt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.babn.BabN.cbrt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns BabN object with approximate floating cube root</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mesomath.babn.BabN.dec2list">
+<span class="sig-name descname"><span class="pre">dec2list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.babn.BabN.dec2list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert decimal integer n to list of int’s (its sexagesimal digits)</p>
+<dl class="field-list simple">
+<dt class="field-odd">N<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Decimal integer to be converted</p>
+</dd>
+<dt class="field-even">Ntype<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mesomath.babn.BabN.dist">
+<span class="sig-name descname"><span class="pre">dist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.babn.BabN.dist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimates a certain “distance” between two sexagesimal numbers.</p>
+<p>The objective is, given a non-regular number, to select the regular
+number that is closest to it from a list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">N<span class="colon">:</span></dt>
+<dd class="field-odd"><p>may be an integer, formated string (ex: “1:2:3”), a list (ex., [1, 12, 23]) or another BabN object. Returns int.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mesomath.babn.BabN.explain">
+<span class="sig-name descname"><span class="pre">explain</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.babn.BabN.explain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Explains number; print out basic information about the object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mesomath.babn.BabN.f">
+<span class="sig-name descname"><span class="pre">f</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.babn.BabN.f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns BabN object with the floating part of the number (mantissa),
+i.e., removes any trailing sexagesimal zero, ex.: 4:42:0:0 -&gt; 4:42</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mesomath.babn.BabN.float">
+<span class="sig-name descname"><span class="pre">float</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.babn.BabN.float" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns BabN object with the floating part of the number (mantissa),
+i.e., removes any trailing sexagesimal zero, ex.: 4:42:0:0 -&gt; 4:42</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mesomath.babn.BabN.genDB">
+<span class="sig-name descname"><span class="pre">genDB</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.babn.BabN.genDB" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates sqlite3 database of regular numbers</p>
+<dl class="field-list simple">
+<dt class="field-odd">Dbname<span class="colon">:</span></dt>
+<dd class="field-odd"><p>database path and name</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mesomath.babn.BabN.head">
+<span class="sig-name descname"><span class="pre">head</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.babn.BabN.head" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns BabN object with the first d digits of self</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mesomath.babn.BabN.inv">
+<span class="sig-name descname"><span class="pre">inv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">digits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.babn.BabN.inv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns BabN object with approximate inverse of the number,
+i.e., a * a.inv() is approximately a power of 60</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mesomath.babn.BabN.len">
+<span class="sig-name descname"><span class="pre">len</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.babn.BabN.len" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of sexagesimal digits of the number as int</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mesomath.babn.BabN.parse">
+<span class="sig-name descname"><span class="pre">parse</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.babn.BabN.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns tuple with decimal value and list of sexagesimal digits of n.</p>
+<dl class="field-list">
+<dt class="field-odd">N<span class="colon">:</span></dt>
+<dd class="field-odd"><p>may be</p>
+<div class="line-block">
+<div class="line">an integer (sign is ignored),</div>
+<div class="line">a correctly formated string (e.g., 405, “02:45” or “2.45”),</div>
+<div class="line">a list (e.g., [1, 12, 23])</div>
+<div class="line">a tuple (e.g., (i,j,k,l) such that  2**i * 3**j * 5**k * l is the</div>
+<div class="line-block">
+<div class="line">decimal value of the number</div>
+</div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mesomath.babn.BabN.rec">
+<span class="sig-name descname"><span class="pre">rec</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.babn.BabN.rec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns BabN object with the reciprocal of a regular number, returns
+None for non-regular numbers</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mesomath.babn.BabN.round">
+<span class="sig-name descname"><span class="pre">round</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.babn.BabN.round" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns BabN object rounded to d sexagesimal digits</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mesomath.babn.BabN.searchreg">
+<span class="sig-name descname"><span class="pre">searchreg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limdigits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.babn.BabN.searchreg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search database for regulars between sexagesimals minn y maxn.
+Returns BabN object with the closest regular found.</p>
+<div class="line-block">
+<div class="line">minn and maxn: must be sexagesimal strings using “:” separator</div>
+<div class="line-block">
+<div class="line">limdigits: max regular digits number (default: 6)</div>
+<div class="line-block">
+<div class="line">prt: print list of regulars found (default: False)</div>
+</div>
+</div>
+</div>
+<p>Returns the closest regular as a BabN object</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mesomath.babn.BabN.sqrt">
+<span class="sig-name descname"><span class="pre">sqrt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.babn.BabN.sqrt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns BabN object with approximate floating square root</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mesomath.babn.BabN.tail">
+<span class="sig-name descname"><span class="pre">tail</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.babn.BabN.tail" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns BabN object with the last d digits of self</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mesomath.babn.BabN.trim">
+<span class="sig-name descname"><span class="pre">trim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.babn.BabN.trim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns BabN object corresponding to the first d sexagesimal digits</p>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+</section>
+<section id="module-mesomath.npvs">
+<span id="mesomath-npvs"></span><h2>mesomath.npvs<a class="headerlink" href="#module-mesomath.npvs" title="Permalink to this heading">¶</a></h2>
+<p>This module implements classes for Non-Place-Value numeration system and
+related arithmetic. Intended for Mesopotamian metrological systems,
+but class Npvs is of general use.</p>
+<ul>
+<li><p>class  Npvs: Generic class inspired in Imperial Units System lengths</p>
+<blockquote>
+<div><ul>
+<li><p>class _MesoM: Specializes the Npvs class to handle Mesopotamian counting.</p>
+<blockquote>
+<div><ul>
+<li><p>class  BsyG: Babylonian System G</p></li>
+<li><p>class  BsyS: Babylonian System S</p></li>
+<li><p>class MesoM: Specializes the Npvs class to handle Mesopotamian measurements.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>class  Blen: Babylonian length system</p></li>
+<li><p>class  Bsur: Babylonian surface system</p></li>
+<li><p>class  Bvol: Babylonian volume system</p></li>
+<li><p>class  Bcap: Babylonian capacity system</p></li>
+<li><p>class  Bwei: Babylonian weight system</p></li>
+<li><p>class  Bbri: Babylonian brick counting system</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<dl class="py class">
+<dt class="sig sig-object py" id="mesomath.npvs.Bbri">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mesomath.npvs.</span></span><span class="sig-name descname"><span class="pre">Bbri</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.npvs.Bbri" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class implement Non-Place-Value System arithmetic
+for Old Babylonian Period counting bricks in “sar-b” units (720 bricks).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="mesomath.npvs.Bbri.sexsys">
+<span class="sig-name descname"><span class="pre">sexsys</span></span><a class="headerlink" href="#mesomath.npvs.Bbri.sexsys" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#mesomath.npvs.BsyG" title="mesomath.npvs.BsyG"><code class="xref py py-class docutils literal notranslate"><span class="pre">BsyG</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mesomath.npvs.Bbri.vol">
+<span class="sig-name descname"><span class="pre">vol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nalb</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.npvs.Bbri.vol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the volume corresponding to a number of bricks  based on their
+“Nalbanum.”  1 sar volume for 720 bricks if nalb is 1.
+Output is a Bvol object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Nalb<span class="colon">:</span></dt>
+<dd class="field-odd"><p>nalbanum in decimal e.g. 7.20 for type 2 bricks (defaul: 1.0)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mesomath.npvs.Bcap">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mesomath.npvs.</span></span><span class="sig-name descname"><span class="pre">Bcap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.npvs.Bcap" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class implement Non-Place-Value System arithmetic
+for Old Babylonian Period capacity units</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="mesomath.npvs.Bcap.vol">
+<span class="sig-name descname"><span class="pre">vol</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.npvs.Bcap.vol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert capacity to volume meassurement</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mesomath.npvs.Blen">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mesomath.npvs.</span></span><span class="sig-name descname"><span class="pre">Blen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.npvs.Blen" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class implement Non-Place-Value System arithmetic
+for Old Babylonian Period length units</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mesomath.npvs.Bsur">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mesomath.npvs.</span></span><span class="sig-name descname"><span class="pre">Bsur</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.npvs.Bsur" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class implement Non-Place-Value System arithmetic
+for Old Babylonian Period surface units</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="mesomath.npvs.Bsur.sexsys">
+<span class="sig-name descname"><span class="pre">sexsys</span></span><a class="headerlink" href="#mesomath.npvs.Bsur.sexsys" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#mesomath.npvs.BsyG" title="mesomath.npvs.BsyG"><code class="xref py py-class docutils literal notranslate"><span class="pre">BsyG</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mesomath.npvs.BsyG">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mesomath.npvs.</span></span><span class="sig-name descname"><span class="pre">BsyG</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.npvs.BsyG" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class implement Non-Place-Value System arithmetic
+for Babylonian System-G numeration</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mesomath.npvs.BsyS">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mesomath.npvs.</span></span><span class="sig-name descname"><span class="pre">BsyS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.npvs.BsyS" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class implement Non-Place-Value System arithmetic
+for Babylonian System-S numeration</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mesomath.npvs.Bvol">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mesomath.npvs.</span></span><span class="sig-name descname"><span class="pre">Bvol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.npvs.Bvol" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class implement Non-Place-Value System arithmetic
+for Old Babylonian Period volume units</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="mesomath.npvs.Bvol.bricks">
+<span class="sig-name descname"><span class="pre">bricks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nalb</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.npvs.Bvol.bricks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the volume in number of bricks equivalent based on their
+“Nalbanum.” 720 for 1 sar volume if nalb is 1. Output is a Bbri object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Nalb<span class="colon">:</span></dt>
+<dd class="field-odd"><p>nalbanum in decimal e.g. 7.20 for type 2 bricks (defaul: 1.0)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mesomath.npvs.Bvol.cap">
+<span class="sig-name descname"><span class="pre">cap</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.npvs.Bvol.cap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert volume to capacity meassurement</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="mesomath.npvs.Bvol.sexsys">
+<span class="sig-name descname"><span class="pre">sexsys</span></span><a class="headerlink" href="#mesomath.npvs.Bvol.sexsys" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#mesomath.npvs.BsyG" title="mesomath.npvs.BsyG"><code class="xref py py-class docutils literal notranslate"><span class="pre">BsyG</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mesomath.npvs.Bwei">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mesomath.npvs.</span></span><span class="sig-name descname"><span class="pre">Bwei</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.npvs.Bwei" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class implement Non-Place-Value System arithmetic
+for Old Babylonian Period weight units</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mesomath.npvs.MesoM">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mesomath.npvs.</span></span><span class="sig-name descname"><span class="pre">MesoM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.npvs.MesoM" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class complements the _MesoN class by allowing you to express unit
+coefficients in measurements using the S and G systems as appropriate. It
+introduces the sexsys attribute and enhances the __repr__ method.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="mesomath.npvs.MesoM.prtf">
+<span class="sig-name descname"><span class="pre">prtf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">onesixth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actual</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.npvs.MesoM.prtf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alternative to __repr__() to use the fractions 1/3, 1/2, 2/3, 5/6 of
+the units in the output</p>
+<dl class="field-list simple">
+<dt class="field-odd">Onesixth<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Adds 1/6 to the previous set of fractions if True</p>
+</dd>
+<dt class="field-even">Actual<span class="colon">:</span></dt>
+<dd class="field-even"><p>use academic unit names if True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="mesomath.npvs.MesoM.sexsys">
+<span class="sig-name descname"><span class="pre">sexsys</span></span><a class="headerlink" href="#mesomath.npvs.MesoM.sexsys" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#mesomath.npvs.BsyS" title="mesomath.npvs.BsyS"><code class="xref py py-class docutils literal notranslate"><span class="pre">BsyS</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mesomath.npvs.Npvs">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mesomath.npvs.</span></span><span class="sig-name descname"><span class="pre">Npvs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.npvs.Npvs" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>This class implement Non-Place-Value System arithmetic</dt><dd><p>Example is taken from Imperial length units.</p>
+</dd>
+</dl>
+<section id="class-atributes">
+<h3>Class Atributes:<a class="headerlink" href="#class-atributes" title="Permalink to this heading">¶</a></h3>
+<dl class="field-list simple">
+<dt class="field-odd">title<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Definition of the object</p>
+</dd>
+<dt class="field-even">uname<span class="colon">:</span></dt>
+<dd class="field-even"><p>Unit names</p>
+</dd>
+<dt class="field-odd">ufact<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Factor between units</p>
+</dd>
+<dt class="field-even">aname<span class="colon">:</span></dt>
+<dd class="field-even"><p>Actual or academic unit names</p>
+</dd>
+<dt class="field-odd">cfact<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Factor with the smallest unit</p>
+</dd>
+<dt class="field-even">siv<span class="colon">:</span></dt>
+<dd class="field-even"><p>S.I. value of the smallest unit</p>
+</dd>
+<dt class="field-odd">siu<span class="colon">:</span></dt>
+<dd class="field-odd"><p>S.I. unit name</p>
+</dd>
+<dt class="field-even">prtsex<span class="colon">:</span></dt>
+<dd class="field-even"><p>Printing meassurements in sexagesimal (default: False)</p>
+</dd>
+</dl>
+</section>
+<section id="id1">
+<h3>Instance Attributes:<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<dl class="field-list simple">
+<dt class="field-odd">dec<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Decimal value of meassurement in terms of the smallest unit</p>
+</dd>
+<dt class="field-even">list<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of values per unit</p>
+</dd>
+</dl>
+<p>jccsvq fecit, 2005. Public domain.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="mesomath.npvs.Npvs.SI">
+<span class="sig-name descname"><span class="pre">SI</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.npvs.Npvs.SI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns string with the equivalent in SI units</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mesomath.npvs.Npvs.dec2un">
+<span class="sig-name descname"><span class="pre">dec2un</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.npvs.Npvs.dec2un" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert decimal integer n to list of int’s</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mesomath.npvs.Npvs.scheme">
+<span class="sig-name descname"><span class="pre">scheme</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">actual</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.npvs.Npvs.scheme" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns list with the unit names separated by the corresponding factors
+| actual: Uses actual or academic unit names if True (default: False)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mesomath.npvs.Npvs.si">
+<span class="sig-name descname"><span class="pre">si</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.npvs.Npvs.si" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the equivalent in SI units</p>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="mesomath.npvs._MesoM">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mesomath.npvs.</span></span><span class="sig-name descname"><span class="pre">_MesoM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.npvs._MesoM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specializes the Npvs class to handle Mesopotamian measurements.</p>
+<p>Introduces the .sex() and .explain() methods and the .prtsex attribute.
+Modifies __repr__()</p>
+<dl class="field-list simple">
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="mesomath.npvs._MesoM.explain">
+<span class="sig-name descname"><span class="pre">explain</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.npvs._MesoM.explain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print some information about the object</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mesomath.npvs._MesoM.metval">
+<span class="sig-name descname"><span class="pre">metval</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.npvs._MesoM.metval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns metrological value of object</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mesomath.npvs._MesoM.prtf">
+<span class="sig-name descname"><span class="pre">prtf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">onesixth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actual</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.npvs._MesoM.prtf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alternative to __repr__() to use the fractions 1/3, 1/2, 2/3, 5/6 of
+the units in the output</p>
+<dl class="field-list simple">
+<dt class="field-odd">Onesixth<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Adds 1/6 to the previous set of fractions if True</p>
+</dd>
+<dt class="field-even">Actual<span class="colon">:</span></dt>
+<dd class="field-even"><p>if True, uses academic unit names on output</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mesomath.npvs._MesoM.sex">
+<span class="sig-name descname"><span class="pre">sex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.npvs._MesoM.sex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return sexagesimal floating value of object
+|  r: index of reference unit in uname</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mesomath.npvs.cmul">
+<span class="sig-prename descclassname"><span class="pre">mesomath.npvs.</span></span><span class="sig-name descname"><span class="pre">cmul</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.npvs.cmul" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility function. Returns list of cumulative products of the factor list x</p>
+<dl class="simple">
+<dt>Example: cmul([4,3,3,22,10,8,3]) returns:</dt><dd><p>[1, 4, 12, 36, 792, 7920, 63360, 190080]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mesomath.npvs.normalize">
+<span class="sig-prename descclassname"><span class="pre">mesomath.npvs.</span></span><span class="sig-name descname"><span class="pre">normalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">st</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#mesomath.npvs.normalize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts aname’s to unit names and standardizes fractions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">St<span class="colon">:</span></dt>
+<dd class="field-odd"><p>input strig to be normalized</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-mesomath.hamming">
+<span id="mesomath-hamming"></span><h2>mesomath.hamming<a class="headerlink" href="#module-mesomath.hamming" title="Permalink to this heading">¶</a></h2>
+<p>Generates list of Hamming’s numbers in three formats</p>
+<p>Hamming numbers are numbers of the form</p>
+<div class="line-block">
+<div class="line">H = 2^i × 3^j × 5^k</div>
+<div class="line-block">
+<div class="line">where</div>
+</div>
+<div class="line">i,  j,  k  ≥  0</div>
+</div>
+<p>Here we use:</p>
+<blockquote>
+<div><p><a class="reference external" href="https://rosettacode.org/wiki">https://rosettacode.org/wiki</a>/Hamming_numbers#Cyclic_generator_method_#2.</p>
+</div></blockquote>
+<p>adapted to Python3</p>
+<section id="formats">
+<h3>Formats:<a class="headerlink" href="#formats" title="Permalink to this heading">¶</a></h3>
+<div class="line-block">
+<div class="line">Python list, function: <code class="docutils literal notranslate"><span class="pre">hamming(a,b=none)</span></code></div>
+<div class="line">CSV, function: <code class="docutils literal notranslate"><span class="pre">genCSV(maxn,</span> <span class="pre">sep</span> <span class="pre">=</span> <span class="pre">&quot;,&quot;)</span></code></div>
+<div class="line">SQL, function: <code class="docutils literal notranslate"><span class="pre">genSQL(maxn)</span></code></div>
+</div>
+<p>You can use <code class="docutils literal notranslate"><span class="pre">sqlite3</span></code> command line shell utility (<a class="reference external" href="https://www.sqlite.org/download.html">https://www.sqlite.org/download.html</a>) to generate the <code class="docutils literal notranslate"><span class="pre">regular.db3</span></code> <code class="docutils literal notranslate"><span class="pre">sqlite3</span></code> database required by <code class="docutils literal notranslate"><span class="pre">BabN</span></code> class in this way:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">python3</span> <span class="pre">hamming.py</span> <span class="pre">|sqlite3</span> <span class="pre">regular.db3</span></code></p>
+</div></blockquote>
+<p>All output goes to stdout</p>
+<p>jccsvq fecit 2025</p>
+</section>
+<dl class="py function">
+<dt class="sig sig-object py" id="mesomath.hamming.genCSV">
+<span class="sig-prename descclassname"><span class="pre">mesomath.hamming.</span></span><span class="sig-name descname"><span class="pre">genCSV</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maxn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">','</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.hamming.genCSV" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates csv table of regular numbers and reciprocals</p>
+<p>genCSV(80000) takes a few seconds!
+writes to stdin
+| maxn: decimal int, write the table up to this value
+|  sep: csv field separator (default: “,”)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mesomath.hamming.hamming">
+<span class="sig-prename descclassname"><span class="pre">mesomath.hamming.</span></span><span class="sig-name descname"><span class="pre">hamming</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.hamming.hamming" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a list of Hamming’s numbers</p>
+<p>a and b: generates the list from a to b if b is not None, otherwise return a list
+containig the a-th hamming number only</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mesomath.hamming.merge">
+<span class="sig-prename descclassname"><span class="pre">mesomath.hamming.</span></span><span class="sig-name descname"><span class="pre">merge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.hamming.merge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Internal function</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mesomath.hamming.p">
+<span class="sig-prename descclassname"><span class="pre">mesomath.hamming.</span></span><span class="sig-name descname"><span class="pre">p</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.hamming.p" title="Permalink to this definition">¶</a></dt>
+<dd><p>Internal function</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mesomath.hamming.pp">
+<span class="sig-prename descclassname"><span class="pre">mesomath.hamming.</span></span><span class="sig-name descname"><span class="pre">pp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.hamming.pp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Internal function</p>
+</dd></dl>
+
+</section>
+<section id="mesomath-mesolib">
+<h2>mesomath.mesolib<a class="headerlink" href="#mesomath-mesolib" title="Permalink to this heading">¶</a></h2>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>This is a rather obsolete module, as its functionality has been moved to the methods of the <code class="docutils literal notranslate"><span class="pre">BabN</span></code> class in module <code class="docutils literal notranslate"><span class="pre">mesomath.babn</span></code>. It can be safely ignored and will likely be removed in the future. In any case, please refer to the <cite>test-mesolib.py</cite> script.</p>
+</div>
+<span class="target" id="module-mesomath.mesolib"></span><p>This module implements several functions for basic sexagesimal arithmetic operations related to Mesopotamian mathematics. Inpired by the arithmetic part of Baptiste Mélès’ MesoCalc</p>
+<blockquote>
+<div><p><a class="reference external" href="https://github.com/BapMel/mesocalc">https://github.com/BapMel/mesocalc</a>
+<a class="reference external" href="http://baptiste.meles.free.fr/site/mesocalc.html">http://baptiste.meles.free.fr/site/mesocalc.html</a></p>
+</div></blockquote>
+<p>jccvsq fecit 2025. Public domain</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="mesomath.mesolib.dec2list">
+<span class="sig-prename descclassname"><span class="pre">mesomath.mesolib.</span></span><span class="sig-name descname"><span class="pre">dec2list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.mesolib.dec2list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert integer decimal n to list of int’s (sexagesimal digits)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mesomath.mesolib.dec2sex">
+<span class="sig-prename descclassname"><span class="pre">mesomath.mesolib.</span></span><span class="sig-name descname"><span class="pre">dec2sex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">':'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.mesolib.dec2sex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert decimal n to sexagesimal</p>
+<dl class="field-list simple">
+<dt class="field-odd">Fill<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pad with left 0 sexagesimal digits &lt;= 9 (default: False)</p>
+</dd>
+<dt class="field-even">Sep<span class="colon">:</span></dt>
+<dd class="field-even"><p>sexagesimal digit separator (default: “:”)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mesomath.mesolib.is_regular">
+<span class="sig-prename descclassname"><span class="pre">mesomath.mesolib.</span></span><span class="sig-name descname"><span class="pre">is_regular</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divisors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.mesolib.is_regular" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if x is regular for both decimal and sexagesimal numbers</p>
+<dl class="field-list simple">
+<dt class="field-odd">X<span class="colon">:</span></dt>
+<dd class="field-odd"><p>may be decimal or sexagesimal</p>
+</dd>
+<dt class="field-even">Divisors<span class="colon">:</span></dt>
+<dd class="field-even"><p>prints the divisors of x to stdout (default: False)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mesomath.mesolib.multable">
+<span class="sig-prename descclassname"><span class="pre">mesomath.mesolib.</span></span><span class="sig-name descname"><span class="pre">multable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pral</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">':'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.mesolib.multable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the n multiplication table for principal numbers or for all</p>
+<dl class="field-list">
+<dt class="field-odd">N<span class="colon">:</span></dt>
+<dd class="field-odd"><p>decimal integer &lt; 60</p>
+</dd>
+<dt class="field-even">Pral<span class="colon">:</span></dt>
+<dd class="field-even"><p>if True writes the table for principal numbers:</p>
+<div class="line-block">
+<div class="line-block">
+<div class="line">[i+1 for i in range(20)]+[30,40,50]</div>
+</div>
+<div class="line">if False writes the table for:</div>
+<div class="line-block">
+<div class="line">[i+1 for i in range(59)]</div>
+</div>
+<div class="line">(default: True)</div>
+</div>
+</dd>
+<dt class="field-odd">Sep<span class="colon">:</span></dt>
+<dd class="field-odd"><p>sexagesimal digits separator (default: “:”)</p>
+</dd>
+<dt class="field-even">Fill<span class="colon">:</span></dt>
+<dd class="field-even"><p>add left zero to sexagesimal digits &lt;= 9 (default: False)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mesomath.mesolib.reciprocal">
+<span class="sig-prename descclassname"><span class="pre">mesomath.mesolib.</span></span><span class="sig-name descname"><span class="pre">reciprocal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.mesolib.reciprocal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the reciprocal of regular number x or 0 if not regular
+x may be decimal or sexagesimal</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mesomath.mesolib.regular">
+<span class="sig-prename descclassname"><span class="pre">mesomath.mesolib.</span></span><span class="sig-name descname"><span class="pre">regular</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.mesolib.regular" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns regular number: 2^i × 3^j × 5^k as decimal</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mesomath.mesolib.searchreg">
+<span class="sig-prename descclassname"><span class="pre">mesomath.mesolib.</span></span><span class="sig-name descname"><span class="pre">searchreg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">database</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limdigits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.mesolib.searchreg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Search database for regulars between sexagesimals minn y maxn</p>
+<p>minn and maxn: must be sexagesimals using “:” separator
+limdigits: max regular digits number (default: 6)
+prt: Dump to stdout (default: False)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mesomath.mesolib.sex2dec">
+<span class="sig-prename descclassname"><span class="pre">mesomath.mesolib.</span></span><span class="sig-name descname"><span class="pre">sex2dec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">st</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.mesolib.sex2dec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert sexagesimal n to decimal
+Sexagesimal separator may be “:” or “.”</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mesomath.mesolib.sex2list">
+<span class="sig-prename descclassname"><span class="pre">mesomath.mesolib.</span></span><span class="sig-name descname"><span class="pre">sex2list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">st</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.mesolib.sex2list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert sexagesimal st to list of int’s
+Sexagesimal separator may be “:” or “.”</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mesomath.mesolib.sexadd">
+<span class="sig-prename descclassname"><span class="pre">mesomath.mesolib.</span></span><span class="sig-name descname"><span class="pre">sexadd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.mesolib.sexadd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sexagesimal addition
+Sexagesimal separator may be “:” or “.”</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mesomath.mesolib.sexcbrt">
+<span class="sig-prename descclassname"><span class="pre">mesomath.mesolib.</span></span><span class="sig-name descname"><span class="pre">sexcbrt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">digits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.mesolib.sexcbrt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns approximate cube root of x</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mesomath.mesolib.sexcube">
+<span class="sig-prename descclassname"><span class="pre">mesomath.mesolib.</span></span><span class="sig-name descname"><span class="pre">sexcube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.mesolib.sexcube" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns square of x</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mesomath.mesolib.sexdiv">
+<span class="sig-prename descclassname"><span class="pre">mesomath.mesolib.</span></span><span class="sig-name descname"><span class="pre">sexdiv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">digits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.mesolib.sexdiv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns approximate floating division a/b</p>
+<dl class="field-list simple">
+<dt class="field-odd">A and b<span class="colon">:</span></dt>
+<dd class="field-odd"><p>may be decimal or sexagesimal</p>
+</dd>
+<dt class="field-even">Digits<span class="colon">:</span></dt>
+<dd class="field-even"><p>desired number of digits in the sexagesimal quotient (the actual result may differ by 1)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mesomath.mesolib.sexfloat">
+<span class="sig-prename descclassname"><span class="pre">mesomath.mesolib.</span></span><span class="sig-name descname"><span class="pre">sexfloat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.mesolib.sexfloat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns floating version of number x</p>
+<dl class="field-list simple">
+<dt class="field-odd">X<span class="colon">:</span></dt>
+<dd class="field-odd"><p>may be decimal or sexagesimal</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mesomath.mesolib.sexinv">
+<span class="sig-prename descclassname"><span class="pre">mesomath.mesolib.</span></span><span class="sig-name descname"><span class="pre">sexinv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">digits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.mesolib.sexinv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the floating approximate inverse of x or its reciprocal if regular</p>
+<dl class="field-list simple">
+<dt class="field-odd">X<span class="colon">:</span></dt>
+<dd class="field-odd"><p>may be decimal or sexagesimal</p>
+</dd>
+<dt class="field-even">Digits<span class="colon">:</span></dt>
+<dd class="field-even"><p>Number of digits to return (default: 3)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mesomath.mesolib.sexlen">
+<span class="sig-prename descclassname"><span class="pre">mesomath.mesolib.</span></span><span class="sig-name descname"><span class="pre">sexlen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">':'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.mesolib.sexlen" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the number of sexagesimal digits of x</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mesomath.mesolib.sexmult">
+<span class="sig-prename descclassname"><span class="pre">mesomath.mesolib.</span></span><span class="sig-name descname"><span class="pre">sexmult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sfloat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.mesolib.sexmult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sexagesimal multiplication
+Sexagesimal separator may be “:” or “.”</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mesomath.mesolib.sexsqrt">
+<span class="sig-prename descclassname"><span class="pre">mesomath.mesolib.</span></span><span class="sig-name descname"><span class="pre">sexsqrt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">digits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.mesolib.sexsqrt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns approximate square root of x</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mesomath.mesolib.sexsquare">
+<span class="sig-prename descclassname"><span class="pre">mesomath.mesolib.</span></span><span class="sig-name descname"><span class="pre">sexsquare</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.mesolib.sexsquare" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns square of x</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="mesomath.mesolib.sexsub">
+<span class="sig-prename descclassname"><span class="pre">mesomath.mesolib.</span></span><span class="sig-name descname"><span class="pre">sexsub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mesomath.mesolib.sexsub" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sexagesimal subtraction</p>
+<dl class="field-list simple">
+<dt class="field-odd">A and b<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Sexagesimal separator may be “:” or “.”</p>
+</dd>
+<dt class="field-even">Fill<span class="colon">:</span></dt>
+<dd class="field-even"><p>add left zero to sexagesimal digits &lt;= 9 (default: False)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/mesomath.png" alt="Logo"/>
+            </a></p>
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">API</a><ul>
+<li><a class="reference internal" href="#modules">Modules</a></li>
+<li><a class="reference internal" href="#mesomath">mesomath</a></li>
+<li><a class="reference internal" href="#module-mesomath.babn">mesomath.babn</a><ul>
+<li><a class="reference internal" href="#mesomath.babn.BabN"><code class="docutils literal notranslate"><span class="pre">BabN</span></code></a><ul>
+<li><a class="reference internal" href="#mesomath.babn.BabN.cbrt"><code class="docutils literal notranslate"><span class="pre">BabN.cbrt()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.babn.BabN.dec2list"><code class="docutils literal notranslate"><span class="pre">BabN.dec2list()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.babn.BabN.dist"><code class="docutils literal notranslate"><span class="pre">BabN.dist()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.babn.BabN.explain"><code class="docutils literal notranslate"><span class="pre">BabN.explain()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.babn.BabN.f"><code class="docutils literal notranslate"><span class="pre">BabN.f()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.babn.BabN.float"><code class="docutils literal notranslate"><span class="pre">BabN.float()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.babn.BabN.genDB"><code class="docutils literal notranslate"><span class="pre">BabN.genDB()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.babn.BabN.head"><code class="docutils literal notranslate"><span class="pre">BabN.head()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.babn.BabN.inv"><code class="docutils literal notranslate"><span class="pre">BabN.inv()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.babn.BabN.len"><code class="docutils literal notranslate"><span class="pre">BabN.len()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.babn.BabN.parse"><code class="docutils literal notranslate"><span class="pre">BabN.parse()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.babn.BabN.rec"><code class="docutils literal notranslate"><span class="pre">BabN.rec()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.babn.BabN.round"><code class="docutils literal notranslate"><span class="pre">BabN.round()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.babn.BabN.searchreg"><code class="docutils literal notranslate"><span class="pre">BabN.searchreg()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.babn.BabN.sqrt"><code class="docutils literal notranslate"><span class="pre">BabN.sqrt()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.babn.BabN.tail"><code class="docutils literal notranslate"><span class="pre">BabN.tail()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.babn.BabN.trim"><code class="docutils literal notranslate"><span class="pre">BabN.trim()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-mesomath.npvs">mesomath.npvs</a><ul>
+<li><a class="reference internal" href="#mesomath.npvs.Bbri"><code class="docutils literal notranslate"><span class="pre">Bbri</span></code></a><ul>
+<li><a class="reference internal" href="#mesomath.npvs.Bbri.sexsys"><code class="docutils literal notranslate"><span class="pre">Bbri.sexsys</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.npvs.Bbri.vol"><code class="docutils literal notranslate"><span class="pre">Bbri.vol()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#mesomath.npvs.Bcap"><code class="docutils literal notranslate"><span class="pre">Bcap</span></code></a><ul>
+<li><a class="reference internal" href="#mesomath.npvs.Bcap.vol"><code class="docutils literal notranslate"><span class="pre">Bcap.vol()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#mesomath.npvs.Blen"><code class="docutils literal notranslate"><span class="pre">Blen</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.npvs.Bsur"><code class="docutils literal notranslate"><span class="pre">Bsur</span></code></a><ul>
+<li><a class="reference internal" href="#mesomath.npvs.Bsur.sexsys"><code class="docutils literal notranslate"><span class="pre">Bsur.sexsys</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#mesomath.npvs.BsyG"><code class="docutils literal notranslate"><span class="pre">BsyG</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.npvs.BsyS"><code class="docutils literal notranslate"><span class="pre">BsyS</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.npvs.Bvol"><code class="docutils literal notranslate"><span class="pre">Bvol</span></code></a><ul>
+<li><a class="reference internal" href="#mesomath.npvs.Bvol.bricks"><code class="docutils literal notranslate"><span class="pre">Bvol.bricks()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.npvs.Bvol.cap"><code class="docutils literal notranslate"><span class="pre">Bvol.cap()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.npvs.Bvol.sexsys"><code class="docutils literal notranslate"><span class="pre">Bvol.sexsys</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#mesomath.npvs.Bwei"><code class="docutils literal notranslate"><span class="pre">Bwei</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.npvs.MesoM"><code class="docutils literal notranslate"><span class="pre">MesoM</span></code></a><ul>
+<li><a class="reference internal" href="#mesomath.npvs.MesoM.prtf"><code class="docutils literal notranslate"><span class="pre">MesoM.prtf()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.npvs.MesoM.sexsys"><code class="docutils literal notranslate"><span class="pre">MesoM.sexsys</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#mesomath.npvs.Npvs"><code class="docutils literal notranslate"><span class="pre">Npvs</span></code></a><ul>
+<li><a class="reference internal" href="#mesomath.npvs.Npvs.SI"><code class="docutils literal notranslate"><span class="pre">Npvs.SI()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.npvs.Npvs.dec2un"><code class="docutils literal notranslate"><span class="pre">Npvs.dec2un()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.npvs.Npvs.scheme"><code class="docutils literal notranslate"><span class="pre">Npvs.scheme()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.npvs.Npvs.si"><code class="docutils literal notranslate"><span class="pre">Npvs.si()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#mesomath.npvs._MesoM"><code class="docutils literal notranslate"><span class="pre">_MesoM</span></code></a><ul>
+<li><a class="reference internal" href="#mesomath.npvs._MesoM.explain"><code class="docutils literal notranslate"><span class="pre">_MesoM.explain()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.npvs._MesoM.metval"><code class="docutils literal notranslate"><span class="pre">_MesoM.metval()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.npvs._MesoM.prtf"><code class="docutils literal notranslate"><span class="pre">_MesoM.prtf()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.npvs._MesoM.sex"><code class="docutils literal notranslate"><span class="pre">_MesoM.sex()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#mesomath.npvs.cmul"><code class="docutils literal notranslate"><span class="pre">cmul()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.npvs.normalize"><code class="docutils literal notranslate"><span class="pre">normalize()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-mesomath.hamming">mesomath.hamming</a><ul>
+<li><a class="reference internal" href="#formats">Formats:</a></li>
+<li><a class="reference internal" href="#mesomath.hamming.genCSV"><code class="docutils literal notranslate"><span class="pre">genCSV()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.hamming.hamming"><code class="docutils literal notranslate"><span class="pre">hamming()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.hamming.merge"><code class="docutils literal notranslate"><span class="pre">merge()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.hamming.p"><code class="docutils literal notranslate"><span class="pre">p()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.hamming.pp"><code class="docutils literal notranslate"><span class="pre">pp()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#mesomath-mesolib">mesomath.mesolib</a><ul>
+<li><a class="reference internal" href="#mesomath.mesolib.dec2list"><code class="docutils literal notranslate"><span class="pre">dec2list()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.mesolib.dec2sex"><code class="docutils literal notranslate"><span class="pre">dec2sex()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.mesolib.is_regular"><code class="docutils literal notranslate"><span class="pre">is_regular()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.mesolib.multable"><code class="docutils literal notranslate"><span class="pre">multable()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.mesolib.reciprocal"><code class="docutils literal notranslate"><span class="pre">reciprocal()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.mesolib.regular"><code class="docutils literal notranslate"><span class="pre">regular()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.mesolib.searchreg"><code class="docutils literal notranslate"><span class="pre">searchreg()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.mesolib.sex2dec"><code class="docutils literal notranslate"><span class="pre">sex2dec()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.mesolib.sex2list"><code class="docutils literal notranslate"><span class="pre">sex2list()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.mesolib.sexadd"><code class="docutils literal notranslate"><span class="pre">sexadd()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.mesolib.sexcbrt"><code class="docutils literal notranslate"><span class="pre">sexcbrt()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.mesolib.sexcube"><code class="docutils literal notranslate"><span class="pre">sexcube()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.mesolib.sexdiv"><code class="docutils literal notranslate"><span class="pre">sexdiv()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.mesolib.sexfloat"><code class="docutils literal notranslate"><span class="pre">sexfloat()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.mesolib.sexinv"><code class="docutils literal notranslate"><span class="pre">sexinv()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.mesolib.sexlen"><code class="docutils literal notranslate"><span class="pre">sexlen()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.mesolib.sexmult"><code class="docutils literal notranslate"><span class="pre">sexmult()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.mesolib.sexsqrt"><code class="docutils literal notranslate"><span class="pre">sexsqrt()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.mesolib.sexsquare"><code class="docutils literal notranslate"><span class="pre">sexsquare()</span></code></a></li>
+<li><a class="reference internal" href="#mesomath.mesolib.sexsub"><code class="docutils literal notranslate"><span class="pre">sexsub()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="progs/mtlookup.html"
+                          title="previous chapter"><code class="docutils literal notranslate"><span class="pre">mtlookup</span></code> tutorial</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/api.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="progs/mtlookup.html" title="mtlookup tutorial"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">MesoMath 1.1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">API</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2025, jccsvq.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

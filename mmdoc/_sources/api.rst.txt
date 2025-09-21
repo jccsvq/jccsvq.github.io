@@ -1,0 +1,39 @@
+API
+===
+
+Modules
+-------
+
+.. autosummary::
+   :toctree: generated
+
+mesomath
+--------
+
+mesomath.babn
+-------------
+
+.. automodule:: mesomath.babn
+   :members:
+
+mesomath.npvs
+-------------
+
+.. automodule:: mesomath.npvs
+   :members:
+
+mesomath.hamming
+----------------
+
+.. automodule:: mesomath.hamming
+   :members:
+
+mesomath.mesolib
+----------------
+
+.. important:: This is a rather obsolete module, as its functionality has been moved to the methods of the ``BabN`` class in module ``mesomath.babn``. It can be safely ignored and will likely be removed in the future. In any case, please refer to the `test-mesolib.py` script.
+.. automodule:: mesomath.mesolib
+   :members:
+
+
+
